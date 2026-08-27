@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<title>Two warranties, not one. &middot; Arry's Roofing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+     ARRY'S BRAND STANDARDS V.1
+     Black · Gold · Cream. One metal, no second accent.
+     Inter for the contract. Playfair Display italic for the warmth.
+     4px base grid · 1200px container · 24px card.
+     ============================================================ */
+  :root{
+    --black:#000000;
+    --gold:#EFC459;
+    --gold-bright:#FBE67B;
+    --gold-mid:#F7D14E;
+    --gold-dark:#D4A041;
+    --gold-brown:#8C421D;
+    --charcoal:#3A3A3A;
+    --cream:#FFFAE3;
+    --cream-pale:#FCFBE7;
+    --white:#FFFFFF;
+    --muted:#888888;
+    /* --muted on cream measures 3.38:1, which is under the 4.5:1 floor for
+       body-sized text. On black it is fine at 5.58:1. #5F5B52 is already used
+       elsewhere in this file and clears 6.45:1 on cream, so it is named here
+       as the light-ground muted. New components use it; the dozen existing
+       var(--muted) calls on light grounds are left alone deliberately —
+       changing them silently would restyle every page Arry's has shipped. */
+    --muted-lt:#5F5B52;
+    --gradient-gold:linear-gradient(160deg,#8C421D 0%,#FBE67B 33%,#FCFBE7 54%,#F7D14E 77%,#D4A041 100%);
+
+    --space-2:8px; --space-3:12px; --space-4:16px; --space-6:24px;
+    --space-8:32px; --space-12:48px; --space-16:64px; --space-20:80px;
+    --container-max:1200px; --card-padding:24px;
+    --radius-sm:4px; --radius-md:8px; --radius-lg:16px;
+    --shadow-sm:0 2px 8px rgba(0,0,0,.10);
+    --shadow-md:0 4px 24px rgba(0,0,0,.14);
+    --shadow-lg:0 8px 40px rgba(0,0,0,.20);
+    --shadow-gold:0 4px 24px rgba(239,196,89,.30);
+
+    --sans:'Inter','Segoe UI',system-ui,-apple-system,'Helvetica Neue',Arial,sans-serif;
+    --serif:'Playfair Display',Georgia,'Times New Roman',serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:var(--cream);color:var(--charcoal);font-family:var(--sans);font-weight:400;
+    font-size:14px;line-height:1.5;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+  /* ---- type scale ---- */
+  h1,h2,h3{font-family:var(--sans);color:var(--black)}
+  .h1{font-weight:700;font-size:clamp(28px,4vw,36px);line-height:1.1;letter-spacing:-.02em}
+  .h3{font-weight:700;font-size:20px;line-height:1.25;letter-spacing:-.01em}
+  .sub{font-family:var(--serif);font-style:italic;font-weight:500;
+    font-size:clamp(19px,2.4vw,24px);line-height:1.25;color:var(--gold-dark);margin-top:var(--space-3)}
+  /* A subhead standing on its own rather than sitting under a headline —
+     centred and measured, so it reads as a line addressed to the reader
+     instead of the opening of a paragraph. */
+  .sub.ctr{text-align:center;max-width:58ch;margin-left:auto;margin-right:auto}
+  /* The closing line of a section. Sans, not the Playfair italic used for
+     subheads — a practical instruction with a phone number in it reads wrong
+     set in italic serif, the digits especially. Generous space above so it
+     detaches from whatever it follows and reads as the sign-off. */
+  .closer{font-family:var(--sans);font-style:normal;font-weight:500;
+    font-size:clamp(14.5px,1.45vw,16.5px);line-height:1.65;letter-spacing:.005em;
+    text-align:center;max-width:54ch;margin:var(--space-16) auto 0;color:var(--charcoal)}
+  .dark .closer{color:var(--cream-pale)}
+  @media(max-width:720px){.closer{margin-top:var(--space-12)}}
+  .body{font-size:14px;line-height:1.5;color:var(--charcoal);max-width:66ch;margin-top:var(--space-6)}
+  .body strong{font-weight:700;color:var(--black)}
+  .body + .body{margin-top:var(--space-4)}
+  .cap{font-size:11px;line-height:1.5;color:var(--muted)}
+  .lbl{font-weight:700;font-size:13px;letter-spacing:.30em;text-transform:uppercase}
+
+  /* ---- inverse surfaces ---- */
+  .dark{background:var(--black);color:var(--cream-pale)}
+  .dark h1,.dark h2,.dark h3{color:var(--cream-pale)}
+  .dark .body{color:#C9C4B4}
+  .dark .body strong{color:var(--cream-pale)}
+  .dark .sub{color:var(--gold)}
+  .dark .cap{color:#7d7a72}
+  .gd{color:var(--gold-dark)} .dark .gd{color:var(--gold)}
+
+  section{position:relative;padding:var(--space-16) var(--space-8);z-index:2}
+  .wrap{max-width:var(--container-max);margin:0 auto}
+  @media(max-width:720px){section{padding:var(--space-12) var(--space-6)}}
+
+  /* ---- COMPONENT 01 · section header rail ---- */
+  .rail{border-top:1px solid currentColor;border-bottom:1px solid currentColor;
+    padding:var(--space-3) 0;display:flex;align-items:center;gap:var(--space-3);flex-wrap:wrap;
+    font-weight:700;font-size:11px;letter-spacing:.30em;text-transform:uppercase;color:var(--gold-dark)}
+  .dark .rail{color:var(--gold)}
+  .rail .mid{opacity:.75}
+  .rail .t2{color:var(--charcoal)}
+  .dark .rail .t2{color:var(--muted)}
+  .rail + .h1{margin-top:var(--space-8)}
+  @media(max-width:720px){.rail{font-size:10px;letter-spacing:.24em}}
+
+  /* ---- COMPONENT 02 · stat block ---- */
+  .statblock{display:grid;grid-template-columns:repeat(4,1fr);
+    border-top:1px solid currentColor;border-bottom:1px solid currentColor;
+    margin-top:var(--space-12);color:var(--gold-dark)}
+  .dark .statblock{color:var(--gold)}
+  @media(max-width:820px){.statblock{grid-template-columns:repeat(2,1fr)}}
+  .sb{padding:var(--space-8) var(--space-4);text-align:center}
+  .sb .n{font-weight:700;font-size:clamp(32px,4.4vw,52px);line-height:1;letter-spacing:-.025em;color:var(--black)}
+  .dark .sb .n{color:var(--gold)}
+  .sb .n small{font-size:.42em;font-weight:700;letter-spacing:0}
+  .sb .l{font-weight:700;font-size:10px;letter-spacing:.30em;text-transform:uppercase;
+    color:var(--muted);margin-top:var(--space-3);line-height:1.8}
+
+  /* ---- COMPONENT 03 · numbered feature list ---- */
+  .numlist{list-style:none;margin-top:var(--space-12);display:grid;gap:var(--space-8);
+    grid-template-columns:repeat(2,1fr)}
+  @media(max-width:720px){.numlist{grid-template-columns:1fr;gap:var(--space-6)}}
+  .numlist li .num{font-weight:700;font-size:13px;letter-spacing:.30em;color:var(--gold-dark);display:block;margin-bottom:var(--space-2)}
+  .dark .numlist li .num{color:var(--gold)}
+  .numlist li h3{font-weight:700;font-size:16px;line-height:1.3;color:var(--black);margin-bottom:var(--space-2)}
+  .dark .numlist li h3{color:var(--cream-pale)}
+  .numlist li p{font-size:13px;line-height:1.5;color:var(--charcoal)}
+  .dark .numlist li p{color:#C9C4B4}
+  .numlist li p b{font-weight:700;color:var(--black)}
+  .dark .numlist li p b{color:var(--gold-bright)}
+
+  /* ---- COMPONENT 04 · numbered card stack ---- */
+  .cardstack{list-style:none;margin-top:var(--space-12);display:grid;gap:var(--space-4);
+    grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.cardstack{grid-template-columns:1fr}}
+  .cardstack li{background:var(--white);border:1px solid rgba(58,58,58,.12);border-radius:var(--radius-md);
+    padding:var(--card-padding);box-shadow:var(--shadow-sm)}
+  .dark .cardstack li{background:#0b0b0b;border-color:rgba(239,196,89,.22)}
+  .cardstack .num{font-weight:700;font-size:13px;letter-spacing:.30em;color:var(--gold-dark);display:block;margin-bottom:var(--space-2)}
+  .dark .cardstack .num{color:var(--gold)}
+  .cardstack h3{font-weight:700;font-size:16px;line-height:1.3;color:var(--black);margin-bottom:var(--space-2)}
+  .dark .cardstack h3{color:var(--cream-pale)}
+  .cardstack p{font-size:13px;line-height:1.5;color:var(--charcoal)}
+  .dark .cardstack p{color:#C9C4B4}
+
+  /* ---- shared vs. option-specific scope lines ----
+
+     On an optionSet the three scope pages are mostly the same page. That is
+     honest — the tear-off, the wood repairs, the fascia rebuild and the
+     penetrations genuinely do not change with the panel — but read straight
+     through it looks like three copies of one document, and the two lines that
+     actually differ get lost in the middle of five that do not.
+
+     So each card declares which it is. Option-specific lines take a gold left
+     rule and a gold tag; shared lines are dimmed and tagged as shared. The
+     reader can then skim the gold and find the whole difference between
+     $133,200 and $207,840 in about four seconds.
+
+     Gold text lives only on the dark scope pages. On cream, .tag.only falls
+     back to gold-brown (6.88:1) — gold itself is 1.58:1 on cream and unusable
+     as text. */
+  .cardstack li.only{border-left:3px solid var(--gold-dark)}
+  .dark .cardstack li.only{border-left-color:var(--gold);
+    box-shadow:inset 0 0 0 1px rgba(239,196,89,.10)}
+  /* Recede by surface and border, never by opacity — opacity multiplies the
+     text against the background too, and these cards are already carrying 9px
+     tracked caps that have no contrast to spare. */
+  .cardstack li.shared{background:var(--cream-pale);border-color:rgba(58,58,58,.08);box-shadow:none}
+  .dark .cardstack li.shared{background:#070707;border-color:rgba(239,196,89,.12)}
+  .cardstack .tag{display:block;font-weight:700;font-size:9px;letter-spacing:.24em;
+    text-transform:uppercase;margin-bottom:var(--space-2)}
+  .cardstack .tag.only{color:var(--gold-brown)}
+  .dark .cardstack .tag.only{color:var(--gold)}
+  .cardstack .tag.shared{color:#5F5B52}
+  .dark .cardstack .tag.shared{color:#8A857A}
+  .cardstack li.shared .num{color:#5F5B52}
+  .dark .cardstack li.shared .num{color:#8A857A}
+
+  /* The legend that tells the reader the gold means something. */
+  .scopekey{display:flex;flex-wrap:wrap;gap:var(--space-6);margin-top:var(--space-6);
+    padding:var(--space-3) 0;border-top:1px solid rgba(239,196,89,.25);
+    border-bottom:1px solid rgba(239,196,89,.25)}
+  .scopekey span{display:flex;align-items:center;gap:var(--space-2);
+    font-weight:700;font-size:10px;letter-spacing:.20em;text-transform:uppercase;color:#5F5B52}
+  .dark .scopekey span{color:#8A857A}
+  .scopekey i{display:inline-block;width:14px;height:3px;border-radius:2px;background:#9A958A}
+  .scopekey span.only{color:var(--gold-brown)} .scopekey span.only i{background:var(--gold-dark)}
+  .dark .scopekey span.only{color:var(--gold)} .dark .scopekey span.only i{background:var(--gold)}
+
+  /* ---- COMPONENT 05 · dark section tile ---- */
+  .tile{background:var(--black);color:var(--cream-pale);padding:var(--space-8);
+    border-radius:var(--radius-md);margin-top:var(--space-12);box-shadow:var(--shadow-lg)}
+  .tile .eyebrow{font-weight:700;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:var(--space-4)}
+  .tile .th{font-weight:700;font-size:clamp(20px,2.6vw,28px);line-height:1.2;letter-spacing:-.02em;color:var(--cream-pale);max-width:22ch}
+  .tile .th em{font-style:normal;color:var(--gold)}
+  .tile.gold-tile{background:var(--gold);color:var(--black);box-shadow:var(--shadow-gold)}
+  .tile.gold-tile .eyebrow{color:rgba(0,0,0,.6)}
+  .tile.gold-tile .th{color:var(--black);max-width:44ch}
+  .tile.gold-tile .th em{color:var(--gold-brown);font-style:italic}
+
+  /* ---- COMPONENT 06 · tracked-caps marquee ---- */
+  .marquee{background:var(--black);border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);
+    overflow:hidden;padding:var(--space-3) 0;position:relative;z-index:2}
+  .marquee .track{display:flex;width:max-content;animation:mq 34s linear infinite}
+  .marquee span{font-weight:700;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);
+    white-space:nowrap;padding:0 var(--space-6)}
+  .marquee span::after{content:"\00B7";padding-left:var(--space-6);color:var(--gold-dark)}
+  @keyframes mq{to{transform:translateX(-50%)}}
+  @media(prefers-reduced-motion:reduce){.marquee .track{animation:none}}
+
+  /* ---- COMPONENT 07 · license footer bar (the watermark — never break) ---- */
+  .licbar{display:flex;justify-content:space-between;align-items:center;gap:var(--space-6);flex-wrap:wrap;
+    margin-top:var(--space-16);padding-top:var(--space-3);border-top:1px solid rgba(58,58,58,.2);
+    font-weight:700;font-size:9px;letter-spacing:.32em;text-transform:uppercase;color:var(--charcoal)}
+  .dark .licbar{color:var(--gold);border-top-color:rgba(239,196,89,.3)}
+  @media(max-width:720px){.licbar{font-size:8px;letter-spacing:.22em}}
+
+  /* ---- spec list (contract scope) ---- */
+  .spec{list-style:none;margin-top:var(--space-12);border-top:1px solid rgba(58,58,58,.18)}
+  .spec li{display:grid;grid-template-columns:64px 1fr;gap:var(--space-6);
+    padding:var(--space-6) 0;border-bottom:1px solid rgba(58,58,58,.18);align-items:start}
+  @media(max-width:620px){.spec li{grid-template-columns:1fr;gap:var(--space-2)}}
+  .spec .num{font-weight:700;font-size:13px;letter-spacing:.30em;color:var(--gold-dark);padding-top:2px}
+  .spec h3{font-weight:700;font-size:16px;line-height:1.3;color:var(--black);margin-bottom:var(--space-2)}
+  .spec p{font-size:13px;line-height:1.5;color:var(--charcoal)}
+
+  /* ---- spec table (panel data) ----
+
+     Was flex + space-between with the value right-aligned. That reads badly the
+     moment either side wraps: a two-line label leaves the value floating, and a
+     right-aligned value has a ragged LEFT edge, so the eye has no column to
+     return to. Alex caught it on the CoastalMAX panel, where "Coastal approval"
+     wrapped to two lines and its value came apart across three.
+
+     So it now uses the same row model as .spectable: a fixed label column, the
+     value left-aligned against a consistent edge, labels set as tracked caps so
+     a long one reads as a heading rather than as a wrapped sentence. Both spec
+     styles now scan identically, which is the point. */
+  .dl{margin-top:var(--space-6);border-top:1px solid rgba(239,196,89,.25)}
+  .dl div{display:grid;grid-template-columns:150px minmax(0,1fr);gap:var(--space-6);
+    padding:var(--space-3) 0;border-bottom:1px solid rgba(239,196,89,.25);
+    font-size:13px;align-items:baseline}
+  .dl dt{font-weight:700;font-size:10px;letter-spacing:.20em;text-transform:uppercase;
+    color:var(--muted);line-height:1.7}
+  .dl dd{color:var(--cream-pale);font-weight:500;text-align:left;line-height:1.5;
+    overflow-wrap:break-word}
+  .dl dd.hi{color:var(--gold);font-weight:700}
+  @media(max-width:620px){
+    .dl div{grid-template-columns:1fr;gap:2px}
+    .dl dt{line-height:1.6}
+  }
+
+  /* ---- two column ---- */
+  .cols{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--space-16);align-items:start;margin-top:var(--space-12)}
+  @media(max-width:900px){.cols{grid-template-columns:1fr;gap:var(--space-12)}}
+  .panel{background:var(--black);color:var(--cream-pale);padding:var(--space-8);border-radius:var(--radius-md);box-shadow:var(--shadow-lg)}
+  .panel .eyebrow{font-weight:700;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:var(--space-4)}
+  .panel .note{margin-top:var(--space-6);padding-top:var(--space-4);border-top:1px solid rgba(239,196,89,.25);
+    font-size:13px;line-height:1.6;color:#C9C4B4}
+  .panel .note b{color:var(--gold);font-weight:700}
+  .card{background:var(--white);border:1px solid rgba(58,58,58,.14);border-radius:var(--radius-md);
+    padding:var(--space-8);box-shadow:var(--shadow-md)}
+  .card h3{font-weight:700;font-size:18px;color:var(--black);margin-bottom:var(--space-4)}
+  .card p{font-size:13px;line-height:1.55;color:var(--charcoal);margin-bottom:var(--space-3)}
+  .card p:last-child{margin-bottom:0}
+  .card p b{font-weight:700;color:var(--black)}
+
+  /* ---- pull quote ---- */
+  .pull{max-width:60ch;margin-top:var(--space-8);padding-left:var(--space-6);border-left:3px solid var(--gold);
+    font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(18px,2.3vw,24px);line-height:1.35;color:var(--gold)}
+  .pull .attr{display:block;margin-top:var(--space-4);font-family:var(--sans);font-style:normal;font-weight:700;
+    font-size:10px;letter-spacing:.30em;text-transform:uppercase;color:var(--muted)}
+
+  /* ---- swatches ---- */
+  .swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--space-4);margin-top:var(--space-12)}
+  @media(max-width:820px){.swatches{grid-template-columns:repeat(2,1fr)}}
+  .sw{text-align:center}
+  .sw .chip{height:72px;border-radius:var(--radius-sm);border:1px solid rgba(58,58,58,.18)}
+  .sw.sel .chip{border:2px solid var(--gold-dark);box-shadow:var(--shadow-gold)}
+  .sw .nm{font-weight:700;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:var(--space-3)}
+  .sw.sel .nm{color:var(--gold-dark)}
+  .sw .pk{font-weight:700;font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-brown);margin-top:2px}
+
+  /* ---- COMPONENT 08 · spec sheet ----
+     A specification is READ, not scanned for a number. It gets quiet type, a
+     fixed label column and tight rows.
+     Do NOT render specs with .invoice/.irow. That component sets .amt at 24px
+     bold and pushes it to the far right, which is correct for a dollar figure
+     and wrong for "GAF 60 mil EverGuard or 50 mil Extreme" — the value reads as
+     a price and the gap between label and value opens into a canyon.
+     Never put a real customer figure in a comment here: this stylesheet is
+     inlined into every page, so it would ship one client's number to another. */
+  .spectable{margin-top:var(--space-8);background:var(--white);
+    border:1px solid rgba(58,58,58,.14);border-radius:var(--radius-md);
+    overflow:hidden;box-shadow:var(--shadow-sm)}
+  .dark .spectable{background:#0b0b0b;border-color:rgba(239,196,89,.22)}
+  .spectable .sh{background:var(--black);padding:var(--space-3) var(--space-6);
+    font-weight:700;font-size:10px;letter-spacing:.30em;text-transform:uppercase;
+    color:var(--gold);border-bottom:1px solid rgba(239,196,89,.35)}
+  .spectable dl{margin:0}
+  .spectable .srow{display:grid;grid-template-columns:170px minmax(0,1fr);
+    gap:var(--space-6);padding:var(--space-3) var(--space-6);
+    border-bottom:1px solid rgba(58,58,58,.10);align-items:baseline}
+  .spectable dl .srow:last-child{border-bottom:none}
+  .spectable dl .srow:nth-child(even){background:var(--cream-pale)}
+  .dark .spectable .srow{border-bottom-color:rgba(239,196,89,.16)}
+  .dark .spectable dl .srow:nth-child(even){background:rgba(239,196,89,.05)}
+  .spectable dt{font-weight:700;font-size:10px;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--muted);line-height:1.9}
+  .spectable dd{font-size:14px;font-weight:500;line-height:1.5;color:var(--black);
+    overflow-wrap:break-word}
+  .dark .spectable dd{color:var(--cream-pale)}
+  @media(max-width:620px){
+    .spectable .srow{grid-template-columns:1fr;gap:2px;padding:var(--space-3) var(--space-4)}
+    .spectable dt{line-height:1.6}
+  }
+
+  /* ---- COMPONENT 09 · work photo ----
+     A real Arry's roof, hotlinked from arrysroofing.com. Never stock, never AI.
+     Hotlinked rather than committed so the estimates repo stays text only and
+     the marketing team keeps control of its own photography. */
+  .shot{margin-top:var(--space-12);border-radius:var(--radius-md);overflow:hidden;
+    background:var(--black);box-shadow:var(--shadow-lg)}
+  .shot img{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+  /* A straight-down aerial is 4:3 out of the drone, and cropping it to 16:9
+     throws away the two rows of roofs that make the shot worth showing. */
+  .shot.tall img{aspect-ratio:4/3}
+  .shot figcaption{padding:var(--space-3) var(--space-6);
+    font-weight:700;font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--gold);background:var(--black)}
+  @media(max-width:620px){.shot img{aspect-ratio:4/3}}
+  @media print{.shot{box-shadow:none;border-radius:0}.shot img{max-height:88mm}}
+
+  /* ---- invoice ---- */
+  .invoice{margin-top:var(--space-12);background:var(--white);border:1px solid rgba(58,58,58,.16);
+    border-radius:var(--radius-md);overflow:hidden;box-shadow:var(--shadow-lg)}
+  .invoice .ih{background:var(--black);padding:var(--space-6) var(--space-8);
+    display:flex;justify-content:space-between;gap:var(--space-6);flex-wrap:wrap;align-items:center}
+  .invoice .ih .t{font-weight:700;font-size:16px;color:var(--gold);letter-spacing:-.01em}
+  .invoice .ih .m{font-weight:700;font-size:9px;letter-spacing:.30em;text-transform:uppercase;color:var(--muted);line-height:2}
+  .irow{display:grid;grid-template-columns:1fr auto;gap:var(--space-8);padding:var(--space-6) var(--space-8);
+    border-bottom:1px solid rgba(58,58,58,.14);align-items:start}
+  @media(max-width:620px){.irow{grid-template-columns:1fr;gap:var(--space-3)}}
+  .irow h3{font-weight:700;font-size:15px;color:var(--black);margin-bottom:var(--space-2)}
+  .irow p{font-size:13px;line-height:1.5;color:var(--charcoal);max-width:62ch}
+  .irow .amt{font-weight:700;font-size:24px;letter-spacing:-.025em;color:var(--black);white-space:nowrap}
+  .irow.addon{background:var(--cream-pale)}
+  .irow.addon .amt{color:var(--gold-dark)}
+  .irow.total{background:var(--black);border-bottom:none;align-items:center}
+  .irow.total h3{color:var(--gold);font-size:11px;letter-spacing:.30em;text-transform:uppercase;margin-bottom:var(--space-2)}
+  .irow.total p{color:var(--muted)}
+  .irow.total .amt{font-size:clamp(34px,5vw,52px);line-height:1;
+    background:var(--gradient-gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+
+  /* ---- COMPONENT 11 · people cards ----
+     Who is physically turning up. Written for the HOA notice, where the page is
+     read by a resident deciding whether to be worried about the stranger on a
+     ladder — a name and a face does more work there than any paragraph.
+
+     The portrait follows the same rule as the hero seal: a BLACK face with a
+     gold rim, never a gold disc. Arry's mark and most headshots both die on
+     gold. When no photograph exists yet the initials render on that same black
+     face, so the card is complete rather than broken — a missing image must
+     never leave a hole in a document going to a whole community. */
+  .people{list-style:none;margin-top:var(--space-12);display:grid;gap:var(--space-6);
+    grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.people{grid-template-columns:1fr}}
+  .person{background:var(--white);border:1px solid rgba(58,58,58,.12);border-radius:var(--radius-md);
+    padding:var(--card-padding);box-shadow:var(--shadow-sm);
+    display:grid;grid-template-columns:auto 1fr;gap:var(--space-6);align-items:start}
+  .dark .person{background:#0b0b0b;border-color:rgba(239,196,89,.22)}
+  @media(max-width:480px){.person{grid-template-columns:1fr;gap:var(--space-4)}}
+  .person .ph{width:96px;height:96px;border-radius:50%;overflow:hidden;flex:none;
+    background:#0a0a0a;border:3px solid var(--gold-deep,#D4A041);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 22px rgba(154,119,24,.34), inset 0 -4px 10px rgba(0,0,0,.45)}
+  .person .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .person .ini{font-weight:700;font-size:28px;letter-spacing:.06em;color:var(--gold)}
+  .person .nm{font-weight:700;font-size:18px;line-height:1.25;color:var(--black)}
+  .dark .person .nm{color:var(--cream-pale)}
+  .person .rl{font-weight:700;font-size:10px;letter-spacing:.30em;text-transform:uppercase;
+    color:var(--gold-dark);margin-top:var(--space-2)}
+  .dark .person .rl{color:var(--gold)}
+  .person p{font-size:13px;line-height:1.5;color:var(--charcoal);margin-top:var(--space-3);max-width:46ch}
+  .dark .person p{color:#C9C4B4}
+  .person .tel{display:inline-block;margin-top:var(--space-3);text-decoration:none;
+    font-weight:700;font-size:12px;letter-spacing:.10em;color:var(--gold-dark);white-space:nowrap}
+  .dark .person .tel{color:var(--gold)}
+  @media print{
+    .people{grid-template-columns:repeat(2,1fr);gap:8mm}
+    .person{box-shadow:none;border:1px solid rgba(58,58,58,.3);border-radius:0;
+      page-break-inside:avoid;break-inside:avoid}
+    .person .ph{width:66px;height:66px;box-shadow:none}
+  }
+
+  /* ---- COMPONENT 12 · timeline ----
+     A sequence, where .cardstack would say "a set of unrelated points".
+
+     Written because the Virginia Crossing notice ran card stacks on two
+     consecutive pages and the second one stopped being read — identical boxes
+     back to back look like the same page twice. "What happens next" is
+     genuinely ordered in a way findings are not, so it gets a rail with the
+     steps hung off it and the order carries the meaning. */
+  .timeline{list-style:none;margin-top:var(--space-12);position:relative;
+    padding-left:var(--space-8)}
+  .timeline::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:1px;
+    background:linear-gradient(180deg,var(--gold-dark),rgba(212,160,65,.15))}
+  .dark .timeline::before{background:linear-gradient(180deg,var(--gold),rgba(239,196,89,.15))}
+  .timeline li{position:relative;padding-bottom:var(--space-12)}
+  .timeline li:last-child{padding-bottom:0}
+  .timeline li::before{content:"";position:absolute;left:calc(-1 * var(--space-8) + 3px);top:5px;
+    width:9px;height:9px;border-radius:50%;background:var(--cream);
+    border:2px solid var(--gold-dark);box-shadow:0 0 0 4px var(--cream)}
+  .dark .timeline li::before{background:var(--black);border-color:var(--gold);
+    box-shadow:0 0 0 4px var(--black)}
+  .timeline .num{font-weight:700;font-size:11px;letter-spacing:.30em;color:var(--gold-dark);
+    display:block;margin-bottom:var(--space-2)}
+  .dark .timeline .num{color:var(--gold)}
+  .timeline h3{font-weight:700;font-size:19px;line-height:1.25;color:var(--black);
+    margin-bottom:var(--space-2);max-width:34ch}
+  .dark .timeline h3{color:var(--cream-pale)}
+  .timeline p{font-size:14px;line-height:1.6;color:var(--charcoal);max-width:60ch}
+  .dark .timeline p{color:#C9C4B4}
+  @media(max-width:620px){
+    .timeline h3{font-size:16px}
+    .timeline li{padding-bottom:var(--space-8)}
+  }
+  @media print{
+    .timeline li{page-break-inside:avoid;break-inside:avoid;padding-bottom:9mm}
+    .timeline li::before{box-shadow:none}
+  }
+
+  /* ---- COMPONENT 13 · coverage ledger ----
+     Two futures for the same roof, side by side. The whole argument for
+     inspecting a community while its warranty is live is a comparison — the
+     identical defect is a manufacturer's bill on one side of a date and the
+     owners' bill on the other — and a comparison is the one thing a list
+     cannot make. Left column is the outcome we want and carries the gold;
+     right column is deliberately drained of it. */
+  .ledger{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);margin-top:var(--space-12)}
+  @media(max-width:820px){.ledger{grid-template-columns:1fr}}
+  .ledger .col{border-radius:var(--radius-md);padding:var(--space-8);
+    border:1px solid rgba(58,58,58,.14);background:var(--white);box-shadow:var(--shadow-sm)}
+  .dark .ledger .col{background:#0b0b0b;border-color:rgba(255,255,255,.10)}
+  .ledger .col.now{border-color:var(--gold-dark);box-shadow:var(--shadow-gold)}
+  .dark .ledger .col.now{border-color:var(--gold)}
+  .ledger .ch{font-weight:700;font-size:10px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--muted);padding-bottom:var(--space-4);border-bottom:1px solid rgba(58,58,58,.14)}
+  .ledger .col.now .ch{color:var(--gold-dark)}
+  .dark .ledger .col.now .ch{color:var(--gold)}
+  .dark .ledger .ch{border-bottom-color:rgba(255,255,255,.12)}
+  .ledger .ct{font-family:var(--serif);font-style:italic;font-weight:500;
+    font-size:clamp(20px,2.4vw,26px);line-height:1.2;color:var(--charcoal);margin-top:var(--space-4)}
+  .ledger .col.now .ct{color:var(--black)}
+  .dark .ledger .ct{color:#C9C4B4}
+  .dark .ledger .col.now .ct{color:var(--cream-pale)}
+  .ledger ul{list-style:none;margin-top:var(--space-6);display:grid;gap:var(--space-4)}
+  .ledger li{font-size:14px;line-height:1.55;color:var(--charcoal);padding-left:var(--space-6);position:relative}
+  .dark .ledger li{color:#C9C4B4}
+  .ledger li::before{content:"\2014";position:absolute;left:0;color:var(--muted)}
+  .ledger .col.now li::before{content:"\2713";color:var(--gold-dark);font-weight:700}
+  .dark .ledger .col.now li::before{color:var(--gold)}
+  .ledger li b{font-weight:700;color:var(--black)}
+  .dark .ledger li b{color:var(--gold-bright)}
+  @media print{
+    .ledger{gap:6mm}
+    .ledger .col{box-shadow:none;border-radius:0;border:1px solid rgba(58,58,58,.3);
+      page-break-inside:avoid;break-inside:avoid}
+    .ledger .col.now{border:1.5px solid var(--black)}
+  }
+
+  /* ---- COMPONENT 14 · question stack ----
+     The plainest thing in the system, on purpose.
+
+     A resident notice is read by somebody with four specific worries and no
+     interest in a presentation. Set as questions in their own words with the
+     answer directly underneath, the page stops performing and starts
+     answering — which is a different document from the same facts arranged as
+     benefits. No boxes: a hairline rule per question, so twelve of them read
+     as one calm list rather than twelve competing cards. */
+  .qa{list-style:none;margin-top:var(--space-12);display:grid;gap:0}
+  .qa li{padding:var(--space-8) 0;border-top:1px solid rgba(58,58,58,.16)}
+  .dark .qa li{border-top-color:rgba(239,196,89,.22)}
+  .qa li:last-child{border-bottom:1px solid rgba(58,58,58,.16)}
+  .dark .qa li:last-child{border-bottom-color:rgba(239,196,89,.22)}
+  .qa .q{font-weight:700;font-size:clamp(17px,2vw,21px);line-height:1.3;color:var(--black);
+    max-width:44ch;display:flex;gap:var(--space-4)}
+  .dark .qa .q{color:var(--cream-pale)}
+  .qa .q::before{content:"?";flex:none;font-weight:700;color:var(--gold-dark);
+    font-size:.9em;line-height:1.3}
+  .dark .qa .q::before{color:var(--gold)}
+  .qa .a{font-size:14px;line-height:1.65;color:var(--charcoal);max-width:64ch;
+    margin-top:var(--space-3);padding-left:calc(var(--space-4) + .7em)}
+  .dark .qa .a{color:#C9C4B4}
+  .qa .a b{font-weight:700;color:var(--black)}
+  .dark .qa .a b{color:var(--gold-bright)}
+  @media(max-width:620px){
+    .qa li{padding:var(--space-6) 0}
+    .qa .a{padding-left:0;margin-top:var(--space-2)}
+  }
+  @media print{
+    .qa li{page-break-inside:avoid;break-inside:avoid;padding:6mm 0}
+  }
+
+  /* ---- COMPONENT 15 · media block ----
+     A short film, deliberately not full width.
+
+     A 16:9 video run edge to edge takes a whole screen and turns a calm page
+     into a landing page. Here it sits in the left column at about half the
+     measure with the facts beside it, so it reads as an exhibit attached to an
+     argument rather than as the argument. */
+  .mediablock{display:grid;grid-template-columns:1.15fr 1fr;gap:var(--space-8);
+    margin-top:var(--space-12);align-items:start}
+  @media(max-width:820px){.mediablock{grid-template-columns:1fr;gap:var(--space-6)}}
+  /* No facts beside it: one column at a readable measure, not full bleed. A
+     section that is only a film should still sit inside the page's rhythm. */
+  .mediablock.solo{grid-template-columns:1fr;max-width:860px;margin-left:auto;margin-right:auto}
+  .mediablock .vid{background:var(--black);border-radius:var(--radius-md);overflow:hidden;
+    box-shadow:var(--shadow-lg)}
+  .mediablock .vid video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover;background:var(--black)}
+  .mediablock .vcap{padding:var(--space-3) var(--space-6);background:var(--black);
+    font-weight:700;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);
+    display:flex;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap}
+  .mediablock .vcap .t2{color:var(--muted)}
+  .mediablock dl{display:grid;gap:0}
+  .mediablock .mrow{display:grid;grid-template-columns:minmax(88px,32%) 1fr;gap:var(--space-4);
+    padding:var(--space-4) 0;border-top:1px solid rgba(58,58,58,.16);align-items:baseline}
+  .mediablock .mrow:last-child{border-bottom:1px solid rgba(58,58,58,.16)}
+  .dark .mediablock .mrow{border-top-color:rgba(239,196,89,.22)}
+  .dark .mediablock .mrow:last-child{border-bottom-color:rgba(239,196,89,.22)}
+  .mediablock dt{font-weight:700;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--gold-brown);line-height:1.9}
+  .dark .mediablock dt{color:var(--gold)}
+  .mediablock dd{font-size:14px;line-height:1.5;color:var(--charcoal)}
+  .dark .mediablock dd{color:#C9C4B4}
+  .mediablock dd b{color:var(--black);font-weight:700}
+  .dark .mediablock dd b{color:var(--gold-bright)}
+  @media print{
+    .mediablock{grid-template-columns:1fr}
+    /* a video prints as a black rectangle — the poster is what should print */
+    .mediablock .vid video{display:none}
+    .mediablock .vid{background:none;box-shadow:none}
+    .mediablock .vid::before{content:"";display:block;width:100%;aspect-ratio:16/9;
+      background:var(--poster) center/cover no-repeat}
+  }
+
+  /* ---- COMPONENT 16 · comparison pair ----
+     Two photographs of the same thing at two ages, side by side, captioned
+     underneath. Used for the roof as it is against a roof we have finished:
+     the whole "and then what" is easier shown than argued, and a homeowner
+     who has never seen a new roof from above has nothing to picture. */
+  .pair{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6);margin-top:var(--space-12)}
+  @media(max-width:720px){.pair{grid-template-columns:1fr}}
+  .pair figure{margin:0}
+  .pair .fr{position:relative;overflow:hidden;border-radius:var(--radius-md);
+    background:var(--black);box-shadow:var(--shadow-md)}
+  .pair img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
+  .pair .tag{position:absolute;left:0;top:0;padding:8px 16px;background:var(--black);
+    font-weight:700;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+  .pair figure.after .tag{background:var(--gold);color:var(--black)}
+  .pair figcaption{padding-top:var(--space-4)}
+  .pair figcaption h3{font-weight:700;font-size:15px;line-height:1.3;color:var(--black);margin-bottom:6px}
+  .dark .pair figcaption h3{color:var(--cream-pale)}
+  .pair figcaption p{font-size:13px;line-height:1.55;color:var(--charcoal)}
+  .dark .pair figcaption p{color:#C9C4B4}
+  .pair figcaption .meta{font-weight:700;font-size:9px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--muted-lt);margin-top:8px}
+  .dark .pair figcaption .meta{color:var(--muted)}
+  @media print{
+    .pair{grid-template-columns:1fr 1fr;gap:8mm}
+    .pair .fr{box-shadow:none;border-radius:0}
+    .pair figure{page-break-inside:avoid;break-inside:avoid}
+  }
+
+  /* ---- COMPONENT 9b · work gallery ----
+     Finished roofs of the same kind, in a grid. Deliberately NOT `.pair`: two
+     frames make a comparison, a grid of four or six makes a track record, and
+     the two arguments want different furniture. Every frame carries the gold
+     OUR OWN WORK tag because an unlabelled building on a proposal reads as
+     stock photography.
+
+     Fixed 4:3 crop so a portrait drone shot and a landscape one sit in the same
+     rhythm — a gallery where every tile is a different height reads as a
+     scrapbook rather than a record of work. */
+  .gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-6);
+    margin-top:var(--space-12)}
+  @media(max-width:720px){.gallery{grid-template-columns:1fr}}
+  .gallery figure{margin:0}
+  .gallery .fr{position:relative;overflow:hidden;border-radius:var(--radius-md);
+    background:var(--black);box-shadow:var(--shadow-md)}
+  .gallery img{width:100%;display:block;aspect-ratio:4/3;object-fit:cover}
+  .gallery .tag{position:absolute;left:0;top:0;padding:8px 16px;background:var(--black);
+    font-weight:700;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+  .gallery figcaption{padding-top:var(--space-4)}
+  .gallery figcaption h3{font-weight:700;font-size:15px;line-height:1.3;color:var(--black);
+    margin-bottom:6px}
+  .dark .gallery figcaption h3{color:var(--cream-pale)}
+  .gallery figcaption p{font-size:13px;line-height:1.55;color:var(--charcoal)}
+  .dark .gallery figcaption p{color:#C9C4B4}
+  .gallery figcaption .meta{font-weight:700;font-size:9px;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--muted-lt);margin-top:8px}
+  .dark .gallery figcaption .meta{color:var(--muted)}
+  @media print{
+    .gallery{grid-template-columns:1fr 1fr;gap:8mm}
+    .gallery .fr{box-shadow:none;border-radius:0}
+    .gallery figure{page-break-inside:avoid;break-inside:avoid}
+  }
+
+  /* ---- COMPONENT 10 · sign band ----
+     The last thing on the page. Takes the customer to the ServiceTitan proposal
+     where they sign and pay. The link is supplied per job by the salesperson —
+     it can never be generated, and it is never taken from anywhere but them. */
+  .signband{background:var(--black);padding:var(--space-16) var(--space-8);text-align:center;
+    position:relative;z-index:2;border-top:1px solid rgba(239,196,89,.35)}
+  .signband .eyebrow{font-weight:700;font-size:10px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:var(--space-4)}
+  .signband h2{font-family:var(--serif);font-style:italic;font-weight:500;
+    font-size:clamp(24px,3.4vw,36px);line-height:1.2;color:var(--cream-pale);
+    max-width:20ch;margin:0 auto var(--space-8)}
+  .signbtn{display:inline-block;text-decoration:none;padding:18px 44px;border-radius:9999px;
+    background:var(--gradient-gold);color:var(--black);
+    font-weight:700;font-size:12px;letter-spacing:.24em;text-transform:uppercase;
+    box-shadow:var(--shadow-gold);transition:transform .2s ease,box-shadow .2s ease}
+  .signbtn:hover{transform:translateY(-2px);box-shadow:0 8px 34px rgba(239,196,89,.45)}
+  .signband .fine{margin-top:var(--space-6);font-size:12px;line-height:1.6;color:var(--muted);
+    max-width:52ch;margin-left:auto;margin-right:auto}
+  .signband .fine a{color:var(--gold-dark);word-break:break-all}
+  @media print{
+    .signband{padding:18mm 0;page-break-inside:avoid}
+    .signbtn{background:none;color:var(--black);border:1.5px solid var(--black);box-shadow:none}
+    .signband h2{color:var(--black)}
+    .signband .eyebrow{color:var(--gold-brown)}
+  }
+
+  /* ---- chrome ---- */
+  #prog{position:fixed;top:0;left:0;height:3px;width:0;z-index:100;background:var(--gradient-gold)}
+  header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;
+    padding:var(--space-3) var(--space-8);background:rgba(0,0,0,.94);backdrop-filter:blur(9px);border-bottom:1px solid rgba(239,196,89,.35)}
+  .logo{display:flex;align-items:center;gap:var(--space-3);font-weight:700;font-size:15px;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--cream-pale)}
+  .logo img{width:36px;height:36px;border-radius:var(--radius-sm)}
+  .logo b{color:var(--gold);font-weight:700}
+  .hdr-r{font-weight:700;font-size:9px;letter-spacing:.30em;text-transform:uppercase;color:var(--muted)}
+  @media(max-width:720px){.hdr-r{display:none}}
+  #dots{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:10px}
+  #dots a{width:6px;height:6px;border-radius:50%;border:1px solid var(--gold-dark);display:block;transition:.3s;background:rgba(255,250,227,.6)}
+  #dots a.act{background:var(--gold);height:20px;border-radius:9999px;box-shadow:var(--shadow-gold)}
+  @media(max-width:900px){#dots{display:none}}
+  footer{padding:var(--space-8);background:var(--black);display:flex;justify-content:space-between;align-items:center;
+    gap:var(--space-6);flex-wrap:wrap;position:relative;z-index:2;border-top:1px solid rgba(239,196,89,.35);
+    font-weight:700;font-size:9px;letter-spacing:.30em;text-transform:uppercase;color:var(--gold)}
+  footer .fl{display:flex;align-items:center;gap:var(--space-3)}
+  footer img{width:30px;height:30px;border-radius:var(--radius-sm)}
+  @media(max-width:720px){footer{font-size:8px;letter-spacing:.2em}}
+
+  .rv{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
+  .rv.on{opacity:1;transform:none}
+  .d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+  /* ============================================================
+     COVER — preserved verbatim. Scoped to #hero only so the
+     brand system above cannot reach it.
+     ============================================================ */
+  #hero{--card:#FFFFFF;--gold-deep:#D4A041;--gold-pale:#FCFBE7;--bay:#D4A041;
+    --ink:#000000;--ink-soft:#3A3A3A;--hero-cream:#FFFAE3;
+    min-height:100vh;display:flex;align-items:center;justify-content:center;padding:130px 8vw 104px;
+    font-family:'Figtree','Segoe UI',system-ui,-apple-system,sans-serif;font-weight:300;line-height:1.75;color:var(--ink);
+    background:radial-gradient(1000px 540px at 20% 10%, rgba(30,110,126,.1), transparent 60%),
+      radial-gradient(900px 520px at 85% 90%, rgba(201,162,39,.14), transparent 62%),var(--hero-cream)}
+  /* ---- COMPONENT 17 · cover photograph behind the letter ----
+     The hero was a cream field with a card floating on it. Given a real
+     photograph of our own truck outside the customer's own house, the card
+     should sit ON that rather than next to it.
+
+     Two things keep it readable. The image is veiled with cream at .72 — the
+     letter is a document and a document needs paper under it, not a picture.
+     And the veil is heaviest at the top and bottom where the card overlaps,
+     lightest across the middle band, so the photograph still reads. Everything
+     inside .letter is unchanged, so a page with no heroBackground renders
+     exactly as it did before. */
+     The letter is lifted off centre rather than floated in the middle. Centred,
+     an 880px card lands exactly on the subject — the first cut buried our own
+     truck behind the body copy. Pushing the card up clears the bottom third of
+     the frame, and the veil is cut away underneath it so what shows there is
+     the photograph rather than a wash of it.
+
+     The image must also be cropped TALLER than any viewport — 7:5 works — or
+     `cover` fits it exactly, leaves no overflow, and `background-position`
+     does nothing at all. With overflow, positioning to the top pushes the
+     subject down the frame, which is the whole trick. `--cover-pos` is
+     settable per job via `heroFocus`. */
+  #hero.hasbg{position:relative;isolation:isolate;
+    align-items:flex-start;
+    padding-top:clamp(104px,12vh,168px);padding-bottom:clamp(48px,9vh,110px)}
+  #hero.hasbg::before{content:"";position:absolute;inset:0;z-index:0;
+    background:var(--cover) var(--cover-pos,center top)/cover no-repeat}
+  #hero.hasbg::after{content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(180deg,
+      rgba(255,250,227,.90) 0%,
+      rgba(255,250,227,.86) 52%,
+      rgba(255,250,227,.44) 66%,
+      rgba(255,250,227,.14) 82%,
+      rgba(255,250,227,.34) 100%)}
+  #hero.hasbg .letter{z-index:2}
+  /* On a phone the card is nearly the full height, so there is no bottom strip
+     to protect — go back to an even veil and keep the card readable. */
+  @media(max-width:720px){
+    #hero.hasbg{padding-top:clamp(84px,10vh,120px)}
+    #hero.hasbg::after{background:linear-gradient(180deg,
+      rgba(255,250,227,.93) 0%, rgba(255,250,227,.90) 70%, rgba(255,250,227,.72) 100%)}
+  }
+  @media print{
+    #hero.hasbg::before{background:none}
+    #hero.hasbg::after{background:none}
+  }
+
+  #hero .letter{max-width:880px;background:var(--card);border:1.4px solid rgba(154,119,24,.4);
+    padding:0 0 clamp(36px,5vw,64px);position:relative;z-index:2;text-align:center;box-shadow:0 30px 80px rgba(30,26,18,.22)}
+  #hero .letter::before{content:"";position:absolute;inset:10px;border:1px solid rgba(154,119,24,.3);pointer-events:none;z-index:3}
+  #hero .cover-wrap{position:relative;overflow:hidden;margin:0 0 8px}
+  #hero .cover-wrap img{width:100%;display:block}
+  #hero .cover-wrap::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 55%,rgba(255,254,248,.96))}
+  #hero .cover-tag{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:4;white-space:nowrap;
+    font-size:9.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+  #hero .inner{padding:0 clamp(28px,5vw,72px)}
+  /* The mark is gold line-work with no fill of its own. On a gold disc it disappears,
+     so the seal is a black face with a gold rim and the mark sits on the black. */
+  #hero .seal{width:78px;height:78px;border-radius:50%;margin:-6px auto 22px;display:flex;align-items:center;justify-content:center;position:relative;z-index:4;
+    background:#0a0a0a;border:3px solid var(--gold-deep);
+    box-shadow:0 10px 28px rgba(154,119,24,.5), inset 0 -4px 10px rgba(0,0,0,.45)}
+  #hero .seal img{width:58px;height:58px;border-radius:0;border:0}
+  #hero .to{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-deep);font-weight:600}
+  #hero h1{font-family:'Playfair Display',Georgia,'Times New Roman',serif;font-size:clamp(40px,5.6vw,76px);font-weight:500;
+    line-height:1.1;color:var(--ink);letter-spacing:normal;margin:16px 0 6px}
+  #hero .addr{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:19px;color:var(--bay)}
+  #hero .body{max-width:600px;margin:26px auto 0;color:var(--ink-soft);font-size:16px;line-height:1.75}
+  #hero .body strong{color:var(--ink);font-weight:500}
+  #hero .sig{margin-top:30px}
+  #hero .sig .name{font-family:'Playfair Display',Georgia,serif;font-style:italic;font-size:24px;color:var(--ink)}
+  #hero .sig .role{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-soft);margin-top:4px}
+
+  @media print{
+    /* browsers strip backgrounds on print unless told otherwise — this is essential */
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}
+    @page{size:letter;margin:14mm 12mm}
+    html,body{background:#fff}
+    #prog,#dots,header{display:none !important}
+    .rv{opacity:1 !important;transform:none !important}
+    .marquee{display:none}
+
+    /* cover owns page one, whole and unbroken — tightened so it fits */
+    #hero{min-height:auto;padding:0;background:none;page-break-after:always;break-after:page}
+    #hero .letter{box-shadow:none;max-width:100%;padding-bottom:20px;page-break-inside:avoid;break-inside:avoid}
+    #hero .cover-wrap img{max-height:74mm;object-fit:cover;object-position:center 42%}
+    #hero .inner{padding:0 28px}
+    #hero .seal{width:56px;height:56px;margin:-4px auto 12px}
+    #hero .seal img{width:40px;height:40px}
+    #hero h1{font-size:40px;margin:10px 0 4px}
+    #hero .addr{font-size:15px}
+    #hero .body{font-size:12px;line-height:1.6;margin-top:14px;max-width:520px}
+    #hero .sig{margin-top:16px}
+    #hero .sig .name{font-size:18px}
+
+    /* every section starts a fresh page */
+    section{page-break-before:always;break-before:page;padding:0 0 8mm}
+    #hero{page-break-before:auto;break-before:auto}
+
+    /* never split a unit across a page boundary */
+    .card,.panel,.tile,.invoice,.cardstack li,.statblock,.swatches,.pull,
+    .spec li,.numlist li,.licbar,.irow,.spectable,.spectable .srow{page-break-inside:avoid;break-inside:avoid}
+    .rail{page-break-after:avoid;break-after:avoid}
+    .h1,.sub,.h3{page-break-after:avoid;break-after:avoid}
+
+    /* the print brochure uses no rounded corners */
+    .card,.panel,.tile,.invoice,.spectable,.cardstack li,.sw .chip,.logo img,footer img{border-radius:0}
+    .invoice,.card,.spectable{box-shadow:none;border:1px solid rgba(58,58,58,.3)}
+    .panel,.tile{box-shadow:none}
+    .cols{gap:32px}
+    footer{page-break-before:avoid;break-before:avoid}
+  }
+
+  /* ---- COMPONENT 21 · product guide layout ----
+     Scoped to body.guide, set by `pageStyle: "guide"` in the content file.
+     Nothing outside a guide page can carry this class, so an estimate or a
+     notice is untouched by everything below.
+
+     Why it exists: the estimate layout runs a 1200px container with prose
+     capped at 66ch. On a proposal that is right — the spec tables, invoice
+     rows and swatch grids all want the full width, and the body copy is a
+     minority of the page. A product guide is the opposite. It is almost
+     entirely prose, so the headline spanned 1100px while the paragraph under
+     it stopped at 580 and the whole page read as text stranded against the
+     left edge with a dead column beside it.
+
+     The fix is one measure for everything. The container narrows to a reading
+     column, every prose element fills it rather than setting its own ceiling,
+     and the headline block is centred over the text it introduces. Ragged
+     right edges now line up because they share a right margin. */
+  body.guide .wrap{max-width:880px}
+  /* Headline, subhead and the section rail centre over the column. Body copy
+     stays left aligned: centred paragraphs give every line a different start
+     point, which is the opposite of what was asked for. */
+  body.guide .h1{text-align:center;max-width:26ch;margin-left:auto;margin-right:auto}
+  body.guide .sub{text-align:center;max-width:52ch;margin-left:auto;margin-right:auto}
+  body.guide .rail{justify-content:center;gap:var(--space-3)}
+  /* One measure. Every prose block fills the column instead of capping itself. */
+  body.guide .body,
+  body.guide .qa .q,
+  body.guide .qa .a,
+  body.guide .numlist p,
+  body.guide .timeline p{max-width:100%}
+  body.guide .body{font-size:15px;line-height:1.65}
+  body.guide .qa .a{font-size:15px;line-height:1.7}
+  /* The pull quote and the tile centre as blocks, keeping the gold rule on the
+     left of the quote where it belongs. */
+  body.guide .pull{max-width:100%}
+  body.guide .tile .th{max-width:100%;text-align:center}
+  body.guide .tile{text-align:center}
+  /* Four statistics across an 880px column leaves each figure about 200px,
+     which is too narrow for a range like 55-74%. Two by two instead. */
+  body.guide .statblock{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:620px){body.guide .statblock{grid-template-columns:1fr}}
+  /* Two numbered columns inside a reading column produce 400px cells and a
+     zigzag the eye has to hunt through. A guide reads top to bottom. */
+  body.guide .numlist{grid-template-columns:1fr}
+  /* The work photo spans the same column as the prose, so its edges are the
+     margin every line of type already sits against. */
+  body.guide .shot{margin-left:auto;margin-right:auto}
+
+  /* ---- COMPONENT 22 · cover designation strip ----
+     A partner or programme mark on the hero, under the address line. Emitted
+     by `heroBadge` in the content file.
+
+     These guides are co-branded. The page argues for somebody else's standard,
+     so the homeowner has to see whose standard it is before they read a word
+     of it. Sitting under the address line it reads as a credential on the
+     document rather than as an advertisement bolted to the top of it.
+
+     --badge-accent is the partner's own colour, set per page. It carries the
+     hairlines and the caption, and it is the ONE place another brand's colour
+     is allowed on an Arry's page. Everything else stays black, cream and gold.
+     Default is gold-brown, the only gold-family colour readable on cream. */
+  .herobadge{--badge-accent:var(--gold-brown);
+    margin:var(--space-6) auto 0;padding:var(--space-4) 0 0;max-width:34ch;
+    border-top:1px solid color-mix(in srgb,var(--badge-accent) 34%,transparent);
+    display:flex;flex-direction:column;align-items:center;gap:var(--space-3)}
+  .herobadge img{height:46px;width:auto;display:block}
+  .herobadge .bcap{font-weight:700;font-size:10px;letter-spacing:.26em;
+    text-transform:uppercase;line-height:1.7;text-align:center;
+    color:var(--badge-accent)}
+  /* On the cover the card is cream, so the accent is being read against paper.
+     A partner colour dark enough to sit there is the contractor's problem to
+     supply; a light one gets no help from us and should not be used. */
+  @media(max-width:620px){
+    .herobadge{max-width:100%}
+    .herobadge img{height:38px}
+    .herobadge .bcap{font-size:9px;letter-spacing:.2em}
+  }
+  @media print{.herobadge{break-inside:avoid;page-break-inside:avoid}}
+
+  /* The cover caption is `white-space:nowrap` and centred with a -50% translate,
+     so a long one runs off both edges of a phone and gets clipped mid-word. On
+     a guide the caption names the photograph, which is worth keeping, so let it
+     wrap inside the card rather than shortening every caption to fit 390px. */
+  @media(max-width:620px){
+    body.guide #hero .cover-tag{white-space:normal;max-width:86%;text-align:center;
+      font-size:8.5px;letter-spacing:.2em;line-height:1.6}
+  }
+
+</style>
+</head>
+<body class="guide">
+<div id="prog"></div>
+<header>
+  <div class="logo"><img src="data:image/png;base64,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" alt=""> ARRY&rsquo;S <b>ROOFING</b></div>
+  <div class="hdr-r">Roof Warranties</div>
+</header>
+<section id="hero">
+  <div class="letter">
+    <div class="cover-wrap"><img src="https://arrysroofing.com/wp-content/uploads/2024/09/Shingle18.jpg" alt="Roof Warranties"><div class="cover-tag">Arry&rsquo;s Roofing &middot; Tampa Bay</div></div>
+    <div class="inner">
+      <div class="seal"><img src="data:image/png;base64,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" alt="Arry's seal"></div>
+      <div class="to">Product guide &middot; Scan it, read it, keep it</div>
+      <h1>Two warranties, not one.</h1>
+      <div class="addr">Roof Warranties &middot; What each tier actually covers</div>
+      <div class="herobadge"><div class="bcap">GAF Master Elite Contractor &middot; 1005920</div></div>
+      <p class="body">Every roof carries two separate promises. The manufacturer covers the material. The contractor covers the work. Most roof problems are the second kind.</p><p class="body">GAF&rsquo;s ladder runs from a basic shingle warranty up to Golden Pledge. What moves you up it is how many GAF components go on the roof, and who is allowed to install them.</p><p class="body">Arry&rsquo;s is a GAF Master Elite contractor, which GAF puts at about two percent of roofers in North America. That is what puts the top of the ladder on the table at all.</p>
+      <div class="sig">
+        <div class="name">&mdash; Arry's Roofing Services</div>
+        <div class="role">Family roofers of Tampa Bay since 1990</div>
+      </div>
+    </div>
+  </div>
+</section><section id="context" class="dark">
+  <div class="wrap">
+    <div class="rail rv"><span>0 2 &middot; How It Works</span><span class="mid">&middot;</span><span class="t2">Components &middot; certification</span></div>
+    <h1 class="h1 rv d1">You do not buy a warranty. You build it.</h1>
+    <p class="sub rv d1">It is not a line on an invoice.</p>
+    <p class="body rv d2">GAF counts five accessory categories: leak barrier, roof deck protection, starter strip, ridge cap and attic ventilation. Three of them earns the Roofing System warranty, four earns Silver Pledge, five earns Golden Pledge.</p><p class="body rv d2">The other half is the contractor. System Plus needs a GAF Certified contractor, Silver Pledge needs Certified Plus or Master Elite, and Golden Pledge needs Master Elite. GAF says seven percent of roofers are Certified and two percent are Master Elite.</p>
+    <figure class="shot rv d2"><img src="https://arrysroofing.com/wp-content/uploads/2024/09/Shingle10.jpg" alt="An Arry's Roofing shingle roof in Tampa Bay" loading="lazy"><figcaption>Arry&rsquo;s Roofing &middot; shingle re-roof, Tampa Bay</figcaption></figure>
+    <div class="pull rv d3">This limited warranty may be transferred only once.<span class="attr">GAF Golden Pledge Limited Warranty</span></div>
+  </div>
+</section><section id="story">
+  <div class="wrap">
+    <div class="rail rv"><span>0 3 &middot; The Ladder</span><span class="mid">&middot;</span><span class="t2">Five rungs, one difference</span></div>
+    <h1 class="h1 rv d1">What changes is the labour.</h1>
+    <p class="sub rv d1">Material cover barely moves. Workmanship changes completely.</p>
+    <p class="body rv d2">Every tier below covers the shingle for its lifetime, so &ldquo;lifetime warranty&rdquo; on its own tells you almost nothing. What you are buying as you climb is somebody&rsquo;s obligation to pay for the labour when something goes wrong, and how long that obligation runs.</p>
+    <div class="statblock rv d2"><div class="sb"><div class="n">5</div><div class="l">Accessory categories GAF counts</div></div><div class="sb"><div class="n">2<small>%</small></div><div class="l">Of roofers are GAF Master Elite</div></div><div class="sb"><div class="n">30<small>yr</small></div><div class="l">Non-prorated labour &middot; Golden Pledge with UHDZ</div></div><div class="sb"><div class="n">20<small>yr</small></div><div class="l">Arry&rsquo;s own workmanship warranty</div></div></div>
+    <ol class="numlist rv d3"><li><span class="num">0 1</span><h3>Shingle &amp; Accessory</h3><p>Comes with the material. Lifetime cover on the shingle, nothing on the workmanship, and no tear-off or disposal.</p></li><li><span class="num">0 2</span><h3>Roofing System</h3><p>Three qualifying GAF accessories extends the material cover to the whole system. Still no workmanship cover.</p></li><li><span class="num">0 3</span><h3>System Plus</h3><p>Three accessories and a GAF Certified contractor. Tear-off and disposal are covered from this rung upward.</p></li><li><span class="num">0 4</span><h3>Silver Pledge</h3><p>Four accessories and a Certified Plus or Master Elite contractor. Ten years of workmanship, or fifteen with UHDZ or Timberline AS II.</p></li><li><span class="num">0 5</span><h3>Golden Pledge</h3><p>Five accessories and a Master Elite contractor. Lifetime workmanship, twenty-five years of it non-prorated, or thirty with UHDZ.</p></li></ol>
+    <div class="tile rv d3"><div class="eyebrow">WindProven</div><div class="th">Fifteen years, no maximum wind speed, and no named-storm exclusion.</div></div>
+  </div>
+</section><section id="questions" class="dark">
+  <div class="wrap">
+    <div class="rail rv"><span>0 4 &middot; Your Questions</span><span class="mid">&middot;</span><span class="t2">Transfer &middot; cover &middot; exclusions</span></div>
+    <h1 class="h1 rv d1">The questions worth asking.</h1>
+    <p class="sub rv d1">Including the ones the brochure does not answer.</p>
+    <p class="body rv d2">A manufacturer warranty covers the material whoever installed it. A workmanship warranty is only as good as the company standing behind it, which is why the age and ownership of your roofer is a warranty question, not a sentimental one.</p><p class="body rv d2">Arry and Becky Housh started this company in 1990. Their sons run it alongside them now.</p>
+    <ul class="qa rv d2"><li><div class="q">What does Arry&rsquo;s cover directly?</div><div class="a">A workmanship warranty of up to twenty years on all our services for a single-family detached home, and fifteen years for other structures. That sits alongside whatever GAF warranty the roof qualifies for.</div></li><li><div class="q">Can I take it with me if I sell?</div><div class="a">Golden Pledge transfers once. Inside the first twenty years the new owner gets the same cover; after that it drops to a two year period and is prorated. GAF has to be notified in writing within a year of the sale.</div></li><li><div class="q">What is WindProven?</div><div class="a">Fifteen years with no maximum wind speed, and GAF states no named-storm exclusion, which is the part that matters here. It needs a LayerLock shingle plus four specific components, at no extra cost and with nothing to register.</div></li><li><div class="q">Do I have to use all GAF products?</div><div class="a">For the upper tiers, yes. That is the mechanism. Mixing brands makes a perfectly good roof, but it caps which warranty that roof can carry.</div></li><li><div class="q">Is Master Elite really rare?</div><div class="a">GAF&rsquo;s own figure is two percent of roofers in North America, with seven percent GAF Certified. Golden Pledge is not something a contractor can offer simply by choosing to.</div></li><li><div class="q">What is not covered by any of them?</div><div class="a">Storm damage, which is your insurance and not your warranty. Neglect, and failure to ventilate. And on the lower rungs, the cost of tearing off and disposing of the failed roof, which is a real number.</div></li></ul>
+    <p class="body rv d3">Ask us which tier your roof qualifies for before you decide what goes on it. Call Arry&rsquo;s Roofing on (727) 938-9565.<br><br><em>Golden Pledge&reg;, Silver Pledge&trade;, WindProven&trade;, System Plus and Master Elite&reg; are trademarks of GAF. Terms summarised from GAF&rsquo;s published warranty documents at the time of writing; the warranty document issued for your roof governs. General information, not a quote.</em></p>
+  </div>
+</section>
+
+<footer>
+  <div class="licbar">ROOFING CCC1326986 &middot; GENERAL CONTRACTOR CGC1525413 &middot; ELECTRICAL EC13015199 &middot; GAF MASTER SELECT CONTRACTOR 1005920</div>
+  <div class="fl">
+    <img src="data:image/png;base64,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" alt="Arry's Roofing logo">
+    <div>&copy; <span id="yr"></span> Arry&rsquo;s Roofing Services, Inc. &middot; 401 E Spruce St,
+      Tarpon Springs, FL &middot; Serving Tampa Bay since 1990</div>
+  </div>
+</footer>
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  var prog = document.getElementById('prog');
+  addEventListener('scroll', function () {
+    var h = document.documentElement;
+    prog.style.width = (h.scrollTop / (h.scrollHeight - h.clientHeight) * 100) + '%';
+  }, { passive: true });
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.rv').forEach(function (el) { io.observe(el); });
+</script>
+</body>
+</html>
