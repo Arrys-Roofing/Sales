@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Product Guides &middot; Arry&rsquo;s Roofing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400;1,700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --black:#000000; --cream:#FFFAE3; --cream-pale:#FCFBE7; --charcoal:#3A3A3A;
+    --gold:#EFC459; --gold-dark:#D4A041; --gold-brown:#8C421D; --muted-lt:#5F5B52;
+    --gold-grad:linear-gradient(160deg,#8C421D,#FBE67B 33%,#FCFBE7 54%,#F7D14E 77%,#D4A041);
+    --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --serif:'Playfair Display',Georgia,'Times New Roman',serif;
+    --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{background:var(--cream);color:var(--charcoal);font-family:var(--sans);
+    -webkit-font-smoothing:antialiased}
+
+  header{background:var(--black);color:var(--cream-pale);padding:14px 28px;
+    display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:13px;
+    letter-spacing:.28em;text-transform:uppercase}
+  .logo img{width:26px;height:26px;display:block}
+  .logo b{background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;
+    color:transparent;font-weight:700}
+  .hdr-r{font-weight:700;font-size:10px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--gold)}
+
+  .wrap{max-width:1120px;margin:0 auto;padding:44px 28px 60px}
+  .eyebrow{font-weight:700;font-size:11px;letter-spacing:.34em;text-transform:uppercase;
+    color:var(--gold-brown);text-align:center}
+  h1{font-family:var(--serif);font-weight:400;font-size:clamp(32px,5vw,52px);line-height:1.08;
+    color:var(--black);text-align:center;margin:14px 0 0;letter-spacing:normal}
+  .sub{font-family:var(--serif);font-style:italic;font-size:clamp(16px,2.1vw,20px);
+    color:var(--gold-brown);text-align:center;margin:10px auto 0;max-width:48ch;line-height:1.35}
+  .rule{border:0;border-top:1px solid rgba(140,66,29,.35);margin:30px 0 0}
+
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:30px}
+  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:600px){.grid{grid-template-columns:1fr}}
+
+  .card{background:var(--cream-pale);border:1px solid rgba(140,66,29,.22);border-radius:10px;
+    padding:22px 20px 20px;display:flex;flex-direction:column;align-items:center;text-align:center;
+    box-shadow:0 2px 10px rgba(0,0,0,.05)}
+  .card .k{font-weight:700;font-size:9.5px;letter-spacing:.30em;text-transform:uppercase;
+    color:var(--gold-brown)}
+  .card h2{font-family:var(--sans);font-weight:700;font-size:19px;line-height:1.2;
+    color:var(--black);margin:9px 0 0;letter-spacing:-.01em}
+  .card p{font-size:12.5px;line-height:1.55;color:var(--muted-lt);margin:9px 0 0;
+    max-width:32ch;min-height:3.9em}
+  .qr{margin:16px 0 0;background:#fff;padding:8px;border-radius:6px;
+    border:1px solid rgba(0,0,0,.10)}
+  .qr img{width:150px;height:150px;display:block;image-rendering:pixelated}
+  .btn{display:block;width:100%;margin-top:16px;padding:11px 14px;border-radius:6px;
+    background:var(--gold-grad);color:var(--black);text-decoration:none;
+    font-weight:700;font-size:11px;letter-spacing:.20em;text-transform:uppercase;
+    box-shadow:0 2px 8px rgba(154,119,24,.34)}
+  .btn:hover{filter:brightness(1.06)}
+  .path{display:none;font-family:var(--mono);font-size:9px;color:var(--muted-lt);margin-top:8px}
+
+  .howto{grid-column:span 2;background:var(--black);color:var(--cream-pale);border-radius:10px;
+    padding:26px 32px;text-align:center;display:flex;flex-direction:column;justify-content:center;
+    gap:12px}
+  @media(max-width:600px){.howto{grid-column:span 1}}
+  .howto .k{font-weight:700;font-size:10px;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--gold)}
+  .howto p{margin:0;font-size:15px;line-height:1.6;max-width:52ch;margin-inline:auto}
+  .howto .second{color:#BDB7A6;font-size:13.5px}
+
+  footer{margin-top:38px;text-align:center}
+  .licbar{font-weight:700;font-size:9px;letter-spacing:.26em;text-transform:uppercase;
+    color:var(--gold-brown);line-height:2}
+  .addr{font-size:11px;color:var(--muted-lt);margin-top:10px;line-height:1.7}
+
+  @media print{
+    @page{size:letter portrait;margin:9mm}
+    body{background:#fff;print-color-adjust:exact;-webkit-print-color-adjust:exact}
+    header{padding:7px 0}
+    /* background-clip:text does not survive every PDF rasteriser and the wordmark
+       printed as a gold box around the letters. Flat gold on black is 12.71:1. */
+    .logo b{background:none;-webkit-background-clip:border-box;background-clip:border-box;
+      color:var(--gold)}
+    .wrap{padding:12px 0 0;max-width:100%}
+    .eyebrow{font-size:8.5px}
+    h1{font-size:25px;margin-top:9px}
+    .sub{font-size:12px;margin-top:6px}
+    .rule{margin-top:10px}
+    .grid{grid-template-columns:repeat(3,1fr);gap:7px;margin-top:11px}
+    .card,.howto{break-inside:avoid;page-break-inside:avoid}
+    .card{padding:11px 9px 10px;box-shadow:none;border-radius:7px}
+    .card .k{font-size:7.5px;letter-spacing:.24em}
+    .card h2{font-size:13.5px;margin-top:6px}
+    .card p{font-size:9px;min-height:0;margin-top:5px;line-height:1.45}
+    .qr{margin-top:8px;padding:4px;border-radius:4px}
+    .qr img{width:92px;height:92px}
+    .btn{display:none}
+    .path{display:block;margin-top:6px;font-size:7.5px}
+    .howto{padding:10px 14px;gap:5px;border-radius:7px}
+    .howto .k{font-size:8px}
+    .howto p{font-size:9.5px;line-height:1.45}
+    .howto .second{font-size:8.5px}
+    footer{margin-top:10px}
+    .licbar{font-size:7.5px;letter-spacing:.2em;line-height:1.8}
+    .addr{font-size:8.5px;margin-top:5px;line-height:1.5}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo"><img src="data:image/png;base64,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" alt=""> Arry&rsquo;s <b>Roofing</b></div>
+  <div class="hdr-r">Product Guides</div>
+</header>
+
+<div class="wrap">
+  <div class="eyebrow">Scan it &middot; Read it &middot; Keep it</div>
+  <h1>Seven things worth knowing<br>about your roof.</h1>
+  <p class="sub">Point a phone camera at any code below. The guide opens on your own screen, and it is yours to keep.</p>
+  <hr class="rule">
+
+  <div class="grid">
+      <article class="card">
+        <div class="k">Beyond code</div>
+        <h2>FORTIFIED Roof</h2>
+        <p>The IBHS standard, what it takes, and what it is worth on a Florida policy.</p>
+        <div class="qr"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjQAAAI0AQAAAAAi8I6uAAADGUlEQVR42u2dUW7jMAxEiV5A97+lb6DdNAk1QzuS0vYreEYQ2E78PgwMSI4oKfqfHEfAgQMHDhw4cODA+RzOEXnc7jw/0XreeZxfPnK7/Iq/OeDA+SROmFpFO/cb/2WV+nr89Lzjj/Ce4cB5ra9Dgte3rO6XGr9SZeNmBPqCA+cNfT2DVErpdmTwKqJDX3DgvB+/suB6ZIMZ0URl6AsOnB/UXymr+0kR2jBAqL/gwNnT17g8dj9O4D3DgfNCX8WxP/wf6Wn0ruf+FO8ZDpyFvkJsebU7NG9Mr8MSRfQFB85rfQ3h9G6mR6uRS61F4hccOFv6CvMDbbRLv8/tHOgLDpylv9HcPEzFSVArP+kwGfqCA2eir1Jhabp45RZGiW7oCw6ceX5YzqN0Rnn3VCoOfwMOnKW+rGFDA1mM+6Uc88d5z3DgTPNDaZKvUUzrr1N3IvqCA2ftb2ippW2HYn1Y/GoykwV9wYEzyQ/FRRxHq6EtYpjz1F9w4LylL3MwMmBl8XWI7nqZzsx7hgNnpq/izMdp6orNZZaZLOgLDpxF/ZXJXunfKNOZ25jMoj0e6AsOnLm/MQx5mT6pysqKrJqH6AsOnGl+aF3x3VawGS2+55DX6D+EA2crPyyu+6i29M9ZjnVvo0JfcOAs80PVkYwpj590mEyGxtAXHDgTfV0sIurN83WI2Yeh0RccOJP6S0Vk5VjvJaKd1Ye+4MBZ+Bvhi7CJxGxEzDPDwD+EA2c7flnGWO70KjdbIgB9wYGzqr+sEdH1VXvmmf8FB862vmr/fJx6EbV1ypx59AUHzjp+3Y52illuGJbFcPAP4cDZ0pf0E0Zc7/Iweumjxjj0BQfO3N8YxVfZ6OGqR7F6HegLDpxJ/aVpoc9GMUO+ddvUEv8QDpy9/NAWamu+xZ4PkBG/4MD5gb+hhZitQl96erX+In7BgfOmvuomy7KAm64sKrUY7xkOnD19hazNKz78/WR8y3JS6AsOnK3667RLka4JoCtpsz8RHDib+rLLspW59RnWvc6pv+DAWejr98cBBw4cOHDgwIED5zM4/wD6IFY4/WJxVQAAAABJRU5ErkJggg==" alt="QR code for the FORTIFIED Roof guide"></div>
+        <a class="btn" href="https://arrys-roofing.github.io/Sales/fortified-roof/">Open the guide</a>
+        <div class="path">/Sales/fortified-roof/</div>
+      </article>
+      <article class="card">
+        <div class="k">Shingle upgrade</div>
+        <h2>Timberline UHDZ</h2>
+        <p>Twenty percent thicker than HDZ, Class 4 impact, thirty year algae cover.</p>
+        <div class="qr"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjQAAAI0AQAAAAAi8I6uAAADDUlEQVR42u2dW27DIBBFUTfA/nfpHdCmcYd7B4Jx26/oWFGVR30+Ih3Ng4GU9i/XUeDAgQMHDhw4cOC8D+cocT2eV3mnPj7/+qufnk/ilgfho/zPBQfOO3GK2XoM4vy8H4o95bJb8AsOnLVfh4lzBikPlBq57Bb8ggNn0692mnUGrNrjV49iteEXHDi/88sqstDq+xEf4RccOL+vv542Ra5YW4pc1F9w4Oz7lXsXGw8n8D3DgfPCL+/Yp+ZGBK/e6JjcxfcMB85rv7yqimorssSuXj0Vi2Uy/IID57r+OixmhWiRCmqXPpJJ/IIDZyd+daHEr54NRute6i/yQzhwdvyK9mB/p/S2fJ+P0vpL0kX8ggNnkR9a8VVkBbn6CMfgIP15OHC2/Gq9dzFJDjV7ZL4XDpyb9VdKEbWFGK6NXQ7qLzhwrv3yqko78CFUTxdlDBi/4MDZ6W+MVVjfHTZMIcYAFfkhHDg7fk0Clnqk2ypro/6CA+de/IrGhbbla8ubViRFpP6CA+dGf6PmaXnbllLzRkup2vie4cB54ZdWXtI/tC5iKSmBNOnwCw6cy/5GtQWvHq2GtFA7IfgFB85m/Mq1lUuXbqE/DwfOjl99wUtSwfibD3AreTEav+DAWccv82i2mqxDv/kYRvyCA2fhV7UuvaaLZpmc3kb8ggNnt78hqWDa85Une3UPJvu/4MDZ8CuNPHXX9LjsPBNF/IIDZ9uvdPC1Jopypo3WXxHX8AsOnEX9ZeMZP++ntebeWpwQ+J7hwFn5NW0PlmJDHXYQhx7Uhl9w4Kz90h9JqTYQNZmul3/DLzhwLvxSZbyhoaP14/lsnL8BB85OfyMP0pdiO1ZEqJKmqvALDpxl/Bpf2m6v8egb9n/BgXMnP7QF5WoN+XH+MO0Iwy84cNb9Da+npMJqtqY8OSYRv+DAueOXnT8/HB6le5zxCw6cW36lX9PrccrPSIzWB37BgXOj/motdQ7TQW1WpuEXHDhXftlLueyHVKoeuCHVGX7BgbPw6+/XAQcOHDhw4MCBA+c9OJ/ERTATcopDEAAAAABJRU5ErkJggg==" alt="QR code for the Timberline UHDZ guide"></div>
+        <a class="btn" href="https://arrys-roofing.github.io/Sales/timberline-uhdz/">Open the guide</a>
+        <div class="path">/Sales/timberline-uhdz/</div>
+      </article>
+      <article class="card">
+        <div class="k">Golden Pledge</div>
+        <h2>Roof Warranties</h2>
+        <p>The GAF ladder, what each tier covers, and who is allowed to offer it.</p>
+        <div class="qr"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjQAAAI0AQAAAAAi8I6uAAADEklEQVR42u2dUY7jMAxDhb2A739L38CLLhKbVOJGnZ2v4hXFYJK27yMAIYmhnRi/8uoBBw4cOHDgwIED53s4PebrdeZ8Rzu+ZZ/+O7SfvAh/4ndecOB8EydMrSKrpaY25hnToCmU6wwHzl5fPQvnJauIJa52nFnS66uioS84cEr6GoesVgfY1hn9FH3BgfMDfR0TWRuzGzyKVxtzWENfcOD8cP6abaHMX1bFmL/gwPlEX9m7KLydwHWGA2ejL3fsp49h9Uu+efcrrjMcOHt9+VSltmEeyqZXf3og6AsOnEd/Q8vR8g/FSDTfXptJ9AUHzvv5SwUl+lrdYLc7X6ty0R/CgVPwN1LyanaJyzyM0LiUBqjQFxw4pfoVqy00BanowjSIvuDAqdSvdQdZ7nNZTyjRRCdwneHA2ehLAxuSNpzD17zdrJ2h/5zrDAfOXl9XHyPF6dWu7ytaj77gwHnU1zIMp3AuoSmra21w/wsOnLq+pq2h4UPNb0TcpevRFxw4lfolaypvg74mvXQLDH3BgfPob8jb0lBNTMWz2PmkxnWGA2ejr7vw4fqn5bhUCgOjLzhwSv2htIK3vv11ZQr1Cw6ckr/RLmv/L8tVbkoe8xccOI/9oTaEcXaJ59+0AHPKUKTHdYYDZ1+/ItuGKSWVQr95oSX6ggPnrb+h29dEyhzqzgAj1zj0BQfOY3+4Fp54VsrWhfm+Aaz/ggOnoi+L8srYlZZe5nXNjf2j4MApzV+WJxxWznTUYv6CA+fj+mWLkeXQUxx7AtcZDpx3+rIq1ixRr6PWzdYc6AsOnEd9dVv7f41wZKM+8A/hwPnA35j16/Ywm/PszwYHTs3fyPv3Nt+2V8O9Gp3i+Q5w4BTq1/XQOkaJ9ebnpzB/wYFT6A/TJqL2NL2xjf6iLzhwKv5GRA5EmYnR3Qnx6Qx9wYFT1FfabjTvfnN53B76ggPno/pl292Ebec7K1rorTH0BQdObf5a2aeem8OVpfdoB/qCA+eNvuxwbNIabVhuivXLcOBU9PX/rw4HDhw4cODAgQPnOzh/AaDlQi6SuK58AAAAAElFTkSuQmCC" alt="QR code for the Roof Warranties guide"></div>
+        <a class="btn" href="https://arrys-roofing.github.io/Sales/roof-warranties/">Open the guide</a>
+        <div class="path">/Sales/roof-warranties/</div>
+      </article>
+      <article class="card">
+        <div class="k">Roof to wall</div>
+        <h2>Hurricane Clips</h2>
+        <p>Toe nails to double wraps, what a retrofit costs, and the insurance credit.</p>
+        <div class="qr"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjQAAAI0AQAAAAAi8I6uAAADLklEQVR42u2dW27rMAxEiW7A+9+lduB72+gxQ9mWgvYrOEEQxHZ8PgQMSI4pJs4/eZWAAwcOHDhw4MCB8zmcEv31Oh1Hu/r/0vF9+H3taGci8i3lK/7mBQfOJ3HC1PrzZaipfe/n0y9FoawzHDj3+mpRqYazFrNUdP2X/S23sM5w4Gzpq2eJL6HVKNaC15wooi84cHb1pcGrhOaBL2UNraEvOHDer796CBsFl6ivXqX+ggNnW1/jsOy+ncA6w4Fzo69L538y7WvqGLUo87tYZzhw7vVVqmtRM8P2qXGtf6ppj77gwNnKDw97BDZOFlNiDWEqOvQFB85KXyN4ua2RPcPDksmmStYZDpxbfalnqC7HEOBxJg9fnUb0BQfOQ/1VnyN7wTXaNk57uDzuCuIXHDhb+upJ4Ahkl2lhi2WeSbLOcOBs1V+jIUoiVA527jeiLzhwHuKXVFLjIVdSX7I+PHtkneHAeYpf4f29ZmUkA18kRn4IB85SX/psq4ew0cIhVZhWZ9LswTrDgfPkb1jjbuuiNyn1k8m9R19w4GzEry4xtTu0FuvNG8NFJD+EA2fpb5S4rK162WVbLA+TIfqCA2fpbwzhuNDScBvtqxcC6wwHzkb91RPC/rY+XtOjzOVgneHAudeXxy9rL1Rb4zxtngD7U+DA2fM39LGydmjoFI4e2qbNmKwzHDiP8WuarTHkFpEagPOP0RccOKv80JqjUrtvjP4NDXP4G3DgbOWHYaOw46o/Ku9rpn8eDpyN+JXKq9Dhh8X6o/JEeuovOHCW+tLJou4iWp/GmWd0oC84cNb5oc++Dp/la0OzzzxmCn3BgbPMD8O3LUcyEmVi28UgX/QFB869vixI6QQAnSg171sJ5m/AgbPrb9iz5t7CcZzJLYxpXzP6ggPnof4ah8WnYU8dv8m6J37BgbP2N6YhbPOfWmrkSlMT0RccOE/6KpEMjbT5ywyNNDcAfcGBs6mv1NaraeHVXCniFxw4b+kr/ZtecuPV92B+FBw479ZfeedXXDRKTf97zjrDgXOrLz3UKW02iCNC6y/2L8OBs6Wv378KHDhw4MCBAwcOnM/g/AN+1IwCR+1ArgAAAABJRU5ErkJggg==" alt="QR code for the Hurricane Clips guide"></div>
+        <a class="btn" href="https://arrys-roofing.github.io/Sales/hurricane-clips/">Open the guide</a>
+        <div class="path">/Sales/hurricane-clips/</div>
+      </article>
+      <article class="card">
+        <div class="k">Sealed deck</div>
+        <h2>Peel and Stick</h2>
+        <p>The layer under the shingles, and why it decides what a storm costs you.</p>
+        <div class="qr"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjQAAAI0AQAAAAAi8I6uAAADLElEQVR42u2dQY7jMAwEif2A//9L/cCb7FhUN5VYmp05BWUESOzYdRDQINmi5Dh/5WgBBw4cOHDgwIED53M4LfLI08f38+s4H5/n7+O6/3nl8W995E/8zgEHzidxwtT670dqKoV2/Wj9Mz2CvuDAudNXKki0c/0rAS5vnh5hnOHA2dLXFbzy+iERraeI6AsOnP/R11eo+hJUE8WJ0NAXHDg/qr+iqyzsynVDyor6Cw6cDX2N07b7cQLjDAfOG30Vx16iWHU5jsu0n55inOHAea+v7lpoIBtXjtPC1uEpIvqCA2flb4y5434MQyMlptVZn2VGX3Dg3Mev1NGw3/sUWI1fUzsH+oIDZ6GvGDNfw+U4R+TKXNG6OMgP4cDZ1FcrKZ+5HNo6lf5GMP8FB85O/aWhKrwW8+aorLxy3hl9wYFzry+LXL3s8ggV2ldvGSP6ggNnGb9641NGKI1oaWioASJNiYwzHDh39ZeVWiou8RU9ZgX9UXDgbOWH3XUf5ZVNH9fZsdHlS/yCA2cjfmkUs/WVzWVY1n+hLzhwlvVXhrAIbdvQSbFQX1G1hr7gwLmNX7oRR7E4LK7FixYp9AUHzmb9pS30JWOMqCtTxBJhnOHAeV9/uUk42x1XUdbqdjf0H8KBs45fEdb4dNiKsMktjKl7inGGA+d9/TWtUhkBS7e+cRniz8OBs+lvqHY0P6yNHGFyw9+AA2eZH2qz7vAuDvc6fNNR/A04cHb11aZpL3E25gZFW1yJvuDAWdZfU6NvXfOls2Nloxv0BQfOe31FWBKY2hkrmm21l5+iLzhwVvmhBaawTaJeZIZ16zbGGQ6cu/wwpNvQ3lskLqLWZfiHcODs5ofWrPtiw8OxC3056N+AA2fT35C9OOprHbz50Lqk0BccOLf11zjNPFB7paYXrKilj77gwFn4G9P7U3RHKXvpXnERmV+GA2epL39/ZegblrW1vsQ79meDA+db+ipCO3xn0XCV0R8FB8439fUiM2x1G4HJyWec4cDZqr9sz6jMA4tvr+vC0BccOLf60tPS6KvRzXLI80RfcOCs9fXzo8GBAwcOHDhw4MD5DM5f+GJg8XoVIXEAAAAASUVORK5CYII=" alt="QR code for the Peel and Stick guide"></div>
+        <a class="btn" href="https://arrys-roofing.github.io/Sales/peel-and-stick/">Open the guide</a>
+        <div class="path">/Sales/peel-and-stick/</div>
+      </article>
+      <article class="card">
+        <div class="k">Solar venting</div>
+        <h2>Attic Breeze</h2>
+        <p>A hundred and fifty degree attic, and what a solar fan does about it.</p>
+        <div class="qr"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjQAAAI0AQAAAAAi8I6uAAADG0lEQVR42u2dbY7CMAxErb1A7n/L3CCrpSWZcfoRWH6hFyFUoH0/Io1sT5wQ7SOjBhw4cODAgQMHDpzv4dToo19vP0Vp4+Ix0m1/13+En/jMgAPnmzhhaq2xvfbvN+mVh6bKU1zleZsplHmGA+dcX/UZs7bAVJ7K0vi1XYTdib7gwHlBXykVLH7R39EXHDhv6Uu/2QNZ7FliL9bQFxw479VfW1o4gtRR5KL+ggNnXV/jY119OYF5hgPnRF/Jsa+iuy2W+Z1HTzHPcOCc66ta8LJAJmPPG8WoJ37BgXOfH4pwZkEloz4nk+gLDpw1f2M35yVy6T0RVnyRH8KBs66vHsW6lEbzhjR19OAlpj3zDAfOaf011rkk8evmxpwupgVo9AUHzrW/MS8upwbgOYRJBGSe4cC50tc+xB7UWqzHrORyUH/BgXOvrzZMwl1cWp35phVVGfqCA2ep/mq5Q7530SfHPokRfcGBc6uvXItV3+oly83ZDEFfcOBc6yuG2R6pC9G9+tSCSH4IB84L9VebOqC0c6NIsOvSQ19w4FzoS2OTdHFYt2GE1mgjS2T9Cw6cxfywjM4Ni2sRKWb1Z4lfcODcxi87WGPqmNql5Ka9yRB9wYFznR/KgnIPWF10an2MXwv7l+HAWfA36tT+VI4cD0kjvd+eeYYD5yo/tAMPR2ASx0PWv4bWqL/gwLmNX7rxpPleyzq7Gd4chb7gwFnJD4s1xo8OqCqZoZ/Ogb7gwFnRV+6GatYhP6yP0g6cfPQFB855/TXHsoNTRks+JVsIzDMcOOf+Ro35cNFUcyU92mE46AsOnFt9qTMfoX2/w/eoVqARv+DAuddXy+VVOtNGW3zHs5zPBgfOir/Rjrb/e7f8qMLmFin0BQfOnb+hOaHZ9cXPGg32f8GB805+mHegeJdvViXrX3DgrPkbEflYgO51pA3OdtgU+SEcOC/pK8LyQN1K6R4++oID5z19af2V/6uoTL306AsOnMX6y7f/54Kr2jEC6AsOnFt92ce0Y0V9D/mDlWD/Mhw4K/r6/6hw4MCBAwcOHDhwvoPzCzrKcrK05L2AAAAAAElFTkSuQmCC" alt="QR code for the Attic Breeze guide"></div>
+        <a class="btn" href="https://arrys-roofing.github.io/Sales/attic-breeze/">Open the guide</a>
+        <div class="path">/Sales/attic-breeze/</div>
+      </article>
+      <article class="card">
+        <div class="k">Walking decks</div>
+        <h2>The Pli-Dek System</h2>
+        <p>A balcony is a roof. The waterproof deck assembly built to be walked on.</p>
+        <div class="qr"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAjQAAAI0AQAAAAAi8I6uAAADG0lEQVR42u2dUY6DMAxErb1A7n/L3CArCsRjB0ja3a/qRVVFW/o+kEbjDE6w9i+jGhw4cODAgQMHDpzv4VTrY/umHgdW2nbQ2nbweu3nH7/2v2yEH/ufAQfON3EsqPUlri6oXWJdcds4P4a/oC84cJ71VcW8XrbldnYOt7Noc+gLDpxVfamUdv8a7ExNDX3BgfOWvsLkq4qpldPI8C84cD6ef4lD7eY1OhfzLzhw1vUVJlxrr0jgOsOBc6OvIbF3ofVwXs68+hfXGQ6ce33VYF4+Fyv+0zbOWdh+fPyEvuDAWdCXB4OlqaCOZKPbmRST6AsOnKm+XFxnPu/hfKoMa27tQF9w4DznGyESbKdDlRZeIsbD8gr5IRw4c31ZbClUn/LE47S5MAujPoQDZ6E+9OIw2lM/7aghJWNEX3DgLPqXSUOU5xjSGaVNUz3lIJ+HA2eurxIiDl+NEiZZpnG9hxvoCw6cqb60a1eqQfevIfEgn4cDZ3H+1WUV+ue1bqymt8mYf8GB80a+0eL0qtxaWGjzoD6EA2emr7ACRY7DFgF9FM8b8S84cBbzDd0HwGTpSlCidgL3vBF9wYHzoK9TVuP+OSnQSBrEv+DAWakPQ6NU3BlAa8Xka8y/4MCZ5xslV4kpqE/fa4sU+oIDZ6ovLxFTZ1TcmkM34mB/ADhw1udf3qTR4p4baXWziBH/ggNnRV+heaOEpNByGm+D7rjOcODc14fDIsokvdQTZbEZGH3BgfPkX6WlTOMyMNTWKfJDOHAW9eWNhSIuXdTcdWdDOwf6ggNnqi/dpzfcU25tqAaDzaEvOHDm+hqCwXRbOWzqK6ehLzhwJvqKxhS2GNUVly1HHNz/ggNnoq/Ytava0YjD74ulVB99wYHz6F/60VK3hsUNN4abZegLDpzF+jD4lO4yqu+p0wN9wYEzyzfUlSwuZ84PLUqPi0VfcOC8pa+0P8BV1kH/PBw4n+irtOtpl36fQw+uMxw4a/Ov4SHm6ZlEvhgTfcGBs6Av/WjaraFlYfzeNNtHX3Dg3Onr76PCgQMHDhw4cODA+Q7OL5o+J/3kR7PtAAAAAElFTkSuQmCC" alt="QR code for the The Pli-Dek System guide"></div>
+        <a class="btn" href="https://arrys-roofing.github.io/Sales/pli-dek/">Open the guide</a>
+        <div class="path">/Sales/pli-dek/</div>
+      </article>
+      <aside class="howto">
+        <div class="k">How to use this sheet</div>
+        <p>Open the camera app, hold it over a code until a link appears, and tap it. Nothing downloads and nothing signs you up for anything.</p>
+        <p class="second">Every guide is general information rather than a quote, and each one carries a phone number at the bottom.</p>
+      </aside>
+  </div>
+
+  <footer>
+    <div class="licbar">ROOFING CCC1326986 &middot; GENERAL CONTRACTOR CGC1525413 &middot; ELECTRICAL EC13015199 &middot; GAF MASTER SELECT CONTRACTOR 1005920</div>
+    <div class="addr">Arry&rsquo;s Roofing Services, Inc. &middot; 401 E Spruce St, Tarpon Springs, FL &middot; (727) 938-9565<br>
+      Serving Pinellas, Hillsborough, Manatee, Sarasota and Pasco since 1990</div>
+  </footer>
+</div>
+</body>
+</html>
