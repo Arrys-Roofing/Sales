@@ -68,6 +68,8 @@ input[type=search]{flex:1 1 200px}
 .Partial{background:var(--warn-bg);color:var(--warn)}
 .Unverified{background:var(--neutral-bg);color:#544d3e}
 .Correct{background:var(--bad-bg);color:var(--bad)}
+.angle{font-size:14px;margin:4px 0 6px;padding:6px 10px;background:var(--gold-soft);border-radius:6px}
+.panel h3,h3+.panel,h3+.script{margin-top:0}
 .flag{display:inline-block;background:var(--warn-bg);color:var(--warn);border-radius:4px;padding:1px 7px;font-size:12px;margin:2px 4px 0 0}
 details{margin-top:6px}
 summary{cursor:pointer;color:#7a5a12;font-size:14px;font-weight:600}
@@ -86,7 +88,7 @@ summary{cursor:pointer;color:#7a5a12;font-size:14px;font-weight:600}
 <body>
 <header><div class="wrap">
   <div class="eyebrow">Arry's Roofing &middot; Solar follow-up</div>
-  <h1>Plan of attack for Matt H.</h1>
+  <h1>Plan of attack for Jamie</h1>
   <p class="sub">98 Tampa-area homes with a reported-closed solar installer &middot; routes run closest to farthest from Port Richey</p>
   <nav role="tablist">
     <button role="tab" id="t-plan" aria-selected="true" aria-controls="planTab">Plan</button>
@@ -113,21 +115,63 @@ summary{cursor:pointer;color:#7a5a12;font-size:14px;font-weight:600}
     <li><b>Log every door</b> with the date and outcome. The Excel file has columns for this.</li>
   </ol></div>
 
-  <h2>At the door</h2>
-  <div class="script">&ldquo;Hi, I'm Matt with Arry's Roofing, a local roofer. We're checking in with homeowners who have solar from installers that have closed, since nobody may be looking after the roof around those panels anymore. Could I do a free check of the roof and the mounts?&rdquo;</div>
-  <p class="small" style="margin-top:8px">Draft. Assumes Arry's will offer a free check, so change that line if not.</p>
+  <h2>The pitch</h2>
+  <div class="note"><b>The goal at the door is a booked inspection, not a roof sale.</b> Keep it to two minutes. Each home's card in the List tab has an <b>Angle</b> line with the best opening for that house.</div>
+
+  <h3>1. Open</h3>
+  <div class="script">&ldquo;Hi, I'm Jamie with Arry's Roofing, a local roofer. I'm stopping by homes in the neighborhood that have solar panels from installers that have since closed. When the installer goes out of business, there's usually nobody left looking after the roof around those panels. We're offering a free check of the roof and the panel mounts. Do you have a minute?&rdquo;</div>
+
+  <h3>2. Ask, then listen</h3>
+  <div class="panel"><ul>
+    <li>&ldquo;Who's been looking after the system since [installer] closed?&rdquo;</li>
+    <li>&ldquo;Any water stains on the ceilings, or drips in the attic, especially under the panels?&rdquo;</li>
+    <li>&ldquo;Do you know how old the roof is under the panels?&rdquo;</li>
+    <li>&ldquo;Has your insurance company asked about the roof's age at renewal?&rdquo;</li>
+    <li>&ldquo;Are you planning to stay in the home for a while?&rdquo;</li>
+  </ul></div>
+
+  <h3>3. Why it matters to them</h3>
+  <div class="panel"><ul>
+    <li><b>Every array means dozens of holes in the roof.</b> Each mount is sealed and flashed, and Florida sun and storms wear that seal down over time.</li>
+    <li><b>The installer usually stood behind those roof penetrations.</b> With the installer gone, a leak around a mount may now be the homeowner's problem.</li>
+    <li><b>A new roof under solar means taking the panels off and putting them back.</b> That goes better when it's planned than after a leak.</li>
+    <li><b>Small problems found early</b>, like a cracked boot, loose flashing or a bad seal, cost far less than water damage to decking and ceilings.</li>
+  </ul></div>
+
+  <h3>4. Close</h3>
+  <div class="script">&ldquo;The check takes about 30 to 45 minutes and there's no cost. You'll get photos of what we find and an honest answer on how much life the roof has left. I have [day] or [day]. Which works better?&rdquo;</div>
+  <p class="small" style="margin-top:8px">Get a name and phone number, and confirm everyone on the title can be there. Cards flagged &ldquo;Multiple owners,&rdquo; &ldquo;Life estate&rdquo; or &ldquo;Trust&rdquo; may need more than one signer.</p>
+
+  <h3>5. Common pushback</h3>
+  <div class="tablewrap"><table><thead><tr><th>They say</th><th>Jamie says</th></tr></thead><tbody>
+    <tr><td>&ldquo;Not interested.&rdquo;</td><td>&ldquo;No problem. Can I leave a card in case you ever see a stain near where the panels are?&rdquo;</td></tr>
+    <tr><td>&ldquo;My roof is fine.&rdquo;</td><td>&ldquo;Good to hear. Then it's a quick look at the mounts and seals, which are what tend to go first.&rdquo;</td></tr>
+    <tr><td>&ldquo;I'm still paying for the solar.&rdquo; or &ldquo;I'm fighting the solar company.&rdquo;</td><td>&ldquo;That's separate from what we do. We only look after the roof. For the loan or contract, your lender or an attorney is the right call.&rdquo;</td></tr>
+    <tr><td>&ldquo;Is this an insurance thing?&rdquo;</td><td>&ldquo;No. We're not here about insurance claims, just checking the roof.&rdquo;</td></tr>
+    <tr><td>&ldquo;How much is a new roof?&rdquo;</td><td>&ldquo;It depends on size, materials and what's under the shingles. The inspection gets you a real number instead of a guess.&rdquo;</td></tr>
+    <tr><td>&ldquo;Can you fix my solar system?&rdquo;</td><td>&ldquo;We handle the roof, and we [work with a licensed solar partner] for taking the panels off and putting them back.&rdquo;</td></tr>
+    <tr><td>&ldquo;Come back later.&rdquo;</td><td>&ldquo;Sure. What day and time is better?&rdquo; Write it on the card log and come back then.</td></tr>
+  </tbody></table></div>
+
+  <h3>6. After every door</h3>
+  <div class="panel"><ul>
+    <li>Leave a card or door hanger, even at a no-answer, with a short handwritten note: &ldquo;Stopped by about the roof under your solar panels.&rdquo;</li>
+    <li>Log the date and outcome in the Excel file.</li>
+    <li>Text booked homeowners a reminder the day before.</li>
+  </ul></div>
+  <p class="small" style="margin-top:8px">Draft scripts. Replace the bracketed parts, confirm Arry's offers a free inspection, and add a line about Arry's (years in business, license) once you have it.</p>
 
   <div class="two">
-    <div class="panel"><h3 style="margin-top:0">Matt can say</h3><ul>
+    <div class="panel"><h3 style="margin-top:0">Jamie can say</h3><ul>
       <li>Name the installer as closed only when its badge says <b>Confirmed</b>.</li>
       <li>Installer workmanship coverage is usually the part at risk when an installer fails.</li>
       <li>Panel and inverter manufacturer warranties usually continue, so they're worth checking.</li>
       <li>A new roof under an array means taking the panels off and putting them back.</li>
     </ul></div>
-    <div class="panel"><h3 style="margin-top:0">Matt should not say</h3><ul>
+    <div class="panel"><h3 style="margin-top:0">Jamie should not say</h3><ul>
       <li>Anything about whether a solar loan or lease can be cancelled, or what a contract means.</li>
       <li>That an insurance claim could pay for the roof. Florida law restricts roofers here.</li>
-      <li>&ldquo;Your warranty is void.&rdquo; He hasn't seen their paperwork.</li>
+      <li>&ldquo;Your warranty is void.&rdquo; Jamie hasn't seen their paperwork.</li>
       <li>Details from this page, like home value, sale price or who is on the title.</li>
     </ul></div>
   </div>
@@ -136,7 +180,7 @@ summary{cursor:pointer;color:#7a5a12;font-size:14px;font-weight:600}
   <div class="panel"><ul>
     <li><b>Solicitor rules.</b> County records put all 98 homes in unincorporated Hillsborough County, despite the Tampa addresses. Check the county's door-to-door rules, which I did not confirm, and HOA restrictions. Honor every no-soliciting sign.</li>
     <li><b>Contracts signed at the home.</b> Have counsel confirm the required cancellation notice and roofing contract language, including <a href="https://www.flsenate.gov/Laws/Statutes/2026/489.147" target="_blank" rel="noopener">Fla. Stat. 489.147</a>, parts of which have been challenged in court.</li>
-    <li><b>Detach and reset.</b> Line up a licensed solar partner and a price before Matt discusses it.</li>
+    <li><b>Detach and reset.</b> Line up a licensed solar partner and a price before Jamie discusses it.</li>
   </ul></div>
 
   <h2>Skip list</h2>
@@ -254,7 +298,7 @@ document.getElementById('skipIntro').textContent = 'County records suggest the o
 document.getElementById('skipList').innerHTML = skips.map(l => `<li><b>${esc(l.address)}</b>: ${esc(l.countyOwner)}${l.mailing ? ', mails to ' + esc(l.mailing) : ''}</li>`).join('');
 const mismatch = LEADS.filter(l => !l.ownerMatch && l.listAddress !== '205 Sunset Cir');
 const fixes = [
-  `<b>${mismatch.length} homes list someone other than the current county owner.</b> Each is flagged on its card, so Matt should use the county name.`,
+  `<b>${mismatch.length} homes list someone other than the current county owner.</b> Each is flagged on its card, so Jamie should use the county name.`,
   `<b>${cnt(l=>l.boughtAfterSolar)} homes sold after the solar went on,</b> so the current owner may not have signed the original deal.`,
   `<b>Two street names were wrong:</b> 2815 Lorraine and 7804 Felice are &ldquo;St,&rdquo; not &ldquo;Ave,&rdquo; in county records.`,
   `<b>205 Sunset Cir</b> has no county parcel of its own. The listed owner, Granite Rose Lake Estate LLC, holds a parcel at 201 Palm Dr.`,
@@ -270,6 +314,17 @@ document.getElementById('installerRows').innerHTML = Object.entries(inst).sort((
 const routeOpts = '<option value="">All routes</option>' + routes.map(r => `<option value="${r}">Route ${r}</option>`).join('') + '<option value="0">Skip list</option>';
 document.getElementById('fRoute').innerHTML = routeOpts;
 document.getElementById('mapRoute').innerHTML = routeOpts;
+function angle(l) {
+  const out = [];
+  if (l.yearBuilt >= 2017 && !l.lastReroof) out.push('Newer home, so lead with checking the mounts and seals, not the roof.');
+  else if (l.lastReroof && l.roofAge < 10) out.push('Roof is fairly new, so lead with checking the mounts and seals.');
+  else if (l.lastReroof) out.push(`Roof is about ${l.roofAge} years old. Ask about stains near the panels and their plan for when the roof is due.`);
+  else if (l.yearBuilt) out.push(`House built ${l.yearBuilt} with no re-roof on record. Ask how old the roof is under the panels.`);
+  if (l.boughtAfterSolar) out.push('They bought after the panels went in, so ask what they were told about the system.');
+  if (l.hasBattery) out.push('They have a battery too, so the system was a big investment worth protecting.');
+  out.push(l.statusCheck === 'Confirmed' ? `OK to say ${l.installer.split(' / ')[0]} has closed.` : `Don't say ${l.installer} has closed; it isn't confirmed.`);
+  return out.join(' ');
+}
 function card(l, n) {
   const flags = (l.flags||[]).map(f => `<span class="flag">${esc(f)}</span>`).join('');
   const grid = [
@@ -287,6 +342,7 @@ function card(l, n) {
       <div class="addr"><a href="${mapsUrl(l)}" target="_blank" rel="noopener">${esc(l.address)}</a></div>
       <div class="owner">${esc(l.listOwner)} &middot; ${l.skip?'Skip':'Tier '+l.tier} &middot; ${where} &middot; ${l.driveMi} mi</div>
       <div class="facts"><span><b>${esc(l.installer)}</b> ${pill(l)} ${l.installYear}</span><span>${roofText(l)}</span><span>${solarText(l)}</span></div>
+      ${l.skip ? '' : `<div class="angle"><b>Angle:</b> ${esc(angle(l))}</div>`}
       ${flags}
       <details><summary>Details</summary><div class="grid">${grid}</div></details>
     </div>
